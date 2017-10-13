@@ -10,7 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171012040232) do
+ActiveRecord::Schema.define(version: 20171012231846) do
+
+  create_table "characters", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.bigint "game_id"
+    t.bigint "user_id"
+    t.string "name"
+    t.string "race"
+    t.string "description"
+    t.text "biography"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["game_id"], name: "index_characters_on_game_id"
+    t.index ["user_id"], name: "index_characters_on_user_id"
+  end
 
   create_table "games", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "secret_key"
