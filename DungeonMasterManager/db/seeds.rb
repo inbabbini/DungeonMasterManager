@@ -54,3 +54,62 @@ characters.each do | c |
     c.inventory.items << Item.new(name: consumables[rand(0..(consumables.size - 1))])
   end
 end
+
+# --------------- Create Skills --------------------
+
+weapons_skills = ['Martial Melee Weapons', 'Martial Ranged Weapons', 'Simple Melee Weapons', 'Simple Ranged Weapons']
+magic_skills = ['Fireball', 'Magic Missile', 'Midas', 'Iai', 'Stonemancy', 'Phyromancy', 'Burning Hands', 'Shilelagh', 'Fire bolt']
+
+characters.each do | c |
+  rand(0..3).times do
+    c.skills << Skill.new(name: weapons_skills[rand(0..weapons_skills.size - 1)])
+  end
+  rand(0..3).times do
+    c.skills << Skill.new(name: magic_skills[rand(0..magic_skills.size - 1)])
+  end
+end
+
+# --------------- Create Statuses ------------------
+
+debuffs = ['Poisoned', 'Frightened', 'Unconcious', 'Cursed', 'Bloodied', 'Injured', 'Bleeding', 'Burning', 'Frozen', 'Paralized', 'Anchored']
+buffs = ['Blessed', 'Exalted', 'Shielded', 'Protected', 'Invulnerable']
+
+characters.each do | c |
+  rand(0..2).times do
+    c.statuses << Status.new(name: debuffs[rand(0..debuffs.size - 1)])
+  end
+  rand(0..2).times do
+    c.statuses << Status.new(name: buffs[rand(0..buffs.size - 1)])
+  end
+end
+
+# ---------------- Create Traits ------------------
+
+adjectives = ['Loves', 'Hates', 'Annoyed by', 'Looks like', 'Collects', 'Despices', 'Fond memories of', 'Believes in', 'Crusades against']
+objects = ['Zombies', 'Dwarves', 'Turtles', 'Horses', 'Paintings', 'Doors', 'Mornings', 'Balds', 'People', 'High Society']
+
+characters.each do | c |
+  rand(0..2).times do
+    c.traits << Trait.new(description: adjectives[rand(0..adjectives.size - 1)] + ' ' + objects[rand(0..objects.size - 1)])
+  end
+end
+
+# ---------------- Create Notes ---------------------
+
+events = ['we found', 'I found', 'we came across', 'I came across', 'we stumbled upon', 'I sumbled upon']
+happenings = ['nothing special', 'some demons on the ruins', 'an old cementery', 'some castle ruins', 'a bridge', 'a broken bridge', 'a Sphinx on the road', 'a band of bald bandits', 'a strange merchant', 'a wandering mage', 'a coven of witches on the forest', 'a loomy swamp']
+
+characters.each do | c |
+  rand(0..3).times do | i |
+    c.notes << Note.new(title: 'Day ' + i.to_s, content: 'Today ' + events[rand(0..events.size - 1)] + " " + happenings[rand(0..happenings.size - 1)])
+  end
+end
+
+# ---------------- Create Achievements --------------
+
+achievement_names = ['Animal Lover', 'Mass murderer', 'Over 9000!', 'Lore master', 'The Impaler', 'Skeleton Slayer', 'King of the Hill', 'Jack of All Trades, Master of None']
+characters.each do | c |
+  rand(0..1).times do
+    c.achievements << Achievement.new(description: achievement_names[rand(0..achievement_names.size - 1)])
+  end
+end

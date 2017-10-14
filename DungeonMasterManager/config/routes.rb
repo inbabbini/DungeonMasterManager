@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  resources :achievements
+  resources :notes
+  resources :skills
   resources :items
   resources :characters
   resources :games
