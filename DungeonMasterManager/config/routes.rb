@@ -1,11 +1,10 @@
 Rails.application.routes.draw do
-  resources :achievements
-  resources :notes
-  resources :skills
-  resources :items
-  resources :characters
-  resources :games
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+
+  #Homepage routes
+  root to: "home#show"
+
+  # User routes
   get 'login', to: redirect('/auth/google_oauth2'), as: 'login'
   get 'logout', to: 'sessions#destroy', as: 'logout'
   get 'auth/:provider/callback', to: 'sessions#create'
@@ -13,5 +12,14 @@ Rails.application.routes.draw do
   get 'home', to: 'home#show'
   get 'me', to: 'users#show', as: 'me'
 
-  root to: "home#show"
+
+  resources :games do
+    resources :characters do
+      resources :skills
+      resources :items
+      resources :notes
+      resources :achievements
+    end
+    resources :rules
+  end
 end

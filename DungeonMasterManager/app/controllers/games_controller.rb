@@ -1,15 +1,20 @@
 class GamesController < ApplicationController
+  before_action :authenticate
   before_action :set_game, only: [:show, :edit, :update, :destroy]
+  before_action :check_visibility_auth, except: [:index, :new, :create]
+  before_action :check_edition_auth, only: [:edit, :update, :destroy]
 
   # GET /games
   # GET /games.json
   def index
-    @games = Game.all
+    @played_games = current_user.played_games
+    @mastered_games = current_user.mastered_games
   end
 
   # GET /games/1
   # GET /games/1.json
   def show
+
   end
 
   # GET /games/new
@@ -25,6 +30,7 @@ class GamesController < ApplicationController
   # POST /games.json
   def create
     @game = Game.new(game_params)
+    @game.dungeon_master = current_user
 
     respond_to do |format|
       if @game.save
@@ -70,5 +76,13 @@ class GamesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def game_params
       params.require(:game).permit(:secret_key)
+    end
+
+    def check_visibility_auth
+      redirect_back fallback_location: games_url, notice: "Non authorized action" unless current_user.is_dm_or_player? @game
+    end
+
+    def check_edition_auth
+      redirect_back fallback_location: games_url, notice: "Non authorized action" unless current_user.is_owner? @game
     end
 end

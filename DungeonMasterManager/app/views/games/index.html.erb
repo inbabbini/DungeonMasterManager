@@ -1,7 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Games</h1>
-
+<h1>Played Games</h1>
 <table>
   <thead>
     <tr>
@@ -11,7 +10,28 @@
   </thead>
 
   <tbody>
-    <% @games.each do |game| %>
+    <% @played_games.each do |game| %>
+      <tr>
+        <td><%= game.secret_key %></td>
+        <td><%= link_to 'Show', game %></td>
+        <td><%= link_to 'Edit', edit_game_path(game) %></td>
+        <td><%= link_to 'Destroy', game, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<h1>Mastered Games</h1>
+<table>
+  <thead>
+    <tr>
+      <th>Secret key</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @mastered_games.each do |game| %>
       <tr>
         <td><%= game.secret_key %></td>
         <td><%= link_to 'Show', game %></td>
