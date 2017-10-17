@@ -1,14 +1,25 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>DungeonMasterManager</title>
+    <title>Dungeon Master Manager <%= yield :title %></title>
     <%= csrf_meta_tags %>
-
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <%= stylesheet_link_tag 'https://bootswatch.com/yeti/bootstrap.css' %>
   </head>
 
   <body>
-    <%= yield %>
+    <%= render "shared/partials/navbar" %>
+
+    <div class="container-fluid">
+      <div class="starter-template">
+
+        <%= yield %>
+
+      </div>
+    </div>
+
   </body>
+
 </html>

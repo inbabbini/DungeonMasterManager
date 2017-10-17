@@ -75,7 +75,7 @@ class GamesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def game_params
-      params.require(:game).permit(:secret_key)
+      params.require(:game).permit(:secret_key, :name)
     end
 
     def check_visibility_auth

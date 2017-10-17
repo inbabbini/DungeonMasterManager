@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171014040442) do
+ActiveRecord::Schema.define(version: 20171015214414) do
 
   create_table "achievements", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.bigint "character_id"
@@ -39,6 +39,7 @@ ActiveRecord::Schema.define(version: 20171014040442) do
     t.bigint "dungeon_master_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "name"
     t.index ["dungeon_master_id"], name: "index_games_on_dungeon_master_id"
   end
 

@@ -19,10 +19,10 @@ user8 = User.create(name: 'Diego')
 
 # --------------- Create Games ------------------
 
-game1 = Game.create(secret_key: 'altohash', dungeon_master: user2)
+game1 = Game.create(name: 'Poncho Server', secret_key: 'altohash', dungeon_master: user2)
 game1.players << [user1, user3, user4, user5, user6, user7, user8]
 
-game2 = Game.create(secret_key: 'altohash2', dungeon_master: user1)
+game2 = Game.create(name: 'Iron Server', secret_key: 'altohash2', dungeon_master: user1)
 game2.players << [user2, user3, user4, user5, user6]
 
 # --------------- Create Characters -------------
