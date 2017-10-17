@@ -1,47 +1,48 @@
-<p id="notice"><%= notice %></p>
+<div class="row justify-content-center">
 
-<h1>Played Games</h1>
-<table>
-  <thead>
-    <tr>
-      <th>Secret key</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+  <div class="col-4">
+    <legend>Mastered Games</legend>
+    <table class="table table-responsive table-striped table-hover">
+      <thead class="thead-inverse">
+        <tr>
+          <th>Name</th>
+          <th colspan="3">Options</th>
+        </tr>
+      </thead>
 
-  <tbody>
-    <% @played_games.each do |game| %>
-      <tr>
-        <td><%= game.secret_key %></td>
-        <td><%= link_to 'Show', game %></td>
-        <td><%= link_to 'Edit', edit_game_path(game) %></td>
-        <td><%= link_to 'Destroy', game, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+      <tbody>
+        <% @mastered_games.each do |game| %>
+          <tr>
+            <td><%= game.name %></td>
+            <td><%= link_to 'Show', game %></td>
+            <td><%= link_to 'Edit', edit_game_path(game) %></td>
+            <td><%= link_to 'Destroy', game, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <%= link_to 'New Game', new_game_path, class: 'btn btn-success text-light' %>
+  </div>
 
-<h1>Mastered Games</h1>
-<table>
-  <thead>
-    <tr>
-      <th>Secret key</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+  <div class="col-4">
+    <legend>Played Games</legend>
+    <table class="table table-responsive table-striped table-hover">
+      <thead class="thead-inverse">
+        <tr>
+          <th>Name</th>
+          <th colspan="3">Options</th>
+        </tr>
+      </thead>
 
-  <tbody>
-    <% @mastered_games.each do |game| %>
-      <tr>
-        <td><%= game.secret_key %></td>
-        <td><%= link_to 'Show', game %></td>
-        <td><%= link_to 'Edit', edit_game_path(game) %></td>
-        <td><%= link_to 'Destroy', game, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+      <tbody>
+        <% @played_games.each do |game| %>
+          <tr>
+            <td><%= game.name %></td>
+            <td><%= link_to 'Show', game %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
 
-<br>
-
-<%= link_to 'New Game', new_game_path %>
+</div>

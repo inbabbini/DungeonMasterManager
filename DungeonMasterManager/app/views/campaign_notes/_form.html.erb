@@ -1,0 +1,42 @@
+<%= form_with(model: campaign_note, local: true) do |form| %>
+  <% if campaign_note.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(campaign_note.errors.count, "error") %> prohibited this campaign_note from being saved:</h2>
+
+      <ul>
+      <% campaign_note.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :title %>
+    <%= form.text_field :title, id: :campaign_note_title %>
+  </div>
+
+  <div class="field">
+    <%= form.label :content %>
+    <%= form.text_area :content, id: :campaign_note_content %>
+  </div>
+
+  <div class="field">
+    <%= form.label :visible_by_players %>
+    <%= form.check_box :visible_by_players, id: :campaign_note_visible_by_players %>
+  </div>
+
+  <div class="field">
+    <%= form.label :dm_annotation %>
+    <%= form.text_field :dm_annotation, id: :campaign_note_dm_annotation %>
+  </div>
+
+  <div class="field">
+    <%= form.label :text %>
+    <%= form.text_field :text, id: :campaign_note_text %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

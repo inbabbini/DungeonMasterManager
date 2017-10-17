@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @campaign_note.title %>
+</p>
+
+<p>
+  <strong>Content:</strong>
+  <%= @campaign_note.content %>
+</p>
+
+<p>
+  <strong>Visible by players:</strong>
+  <%= @campaign_note.visible_by_players %>
+</p>
+
+<p>
+  <strong>Dm annotation:</strong>
+  <%= @campaign_note.dm_annotation %>
+</p>
+
+<p>
+  <strong>Text:</strong>
+  <%= @campaign_note.text %>
+</p>
+
+<%= link_to 'Edit', edit_campaign_note_path(@campaign_note) %> |
+<%= link_to 'Back', campaign_notes_path %>

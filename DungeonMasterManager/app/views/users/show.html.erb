@@ -1,5 +1,21 @@
-<% if user_signed_in %>
-	<% current_user.attributes.each do |k, v| %>
-		<b><%= k %>:</b> <%= v %> <br>
-	<% end %>
+	<% if user_signed_in? %>
+<div class="row justify-content-center">
+	<div class="col-6">
+		<legend> My Information </legend>
+		<div> <%= image_tag current_user.picture, size: "200x200", class: "img-thumbnail rounded mx-auto d-block" %> </div>
+		<ul class="list-group">
+			<li class="list-group-item">
+				<b>Name:</b> <%= current_user.name %>
+			</li>
+			<li class="list-group-item">
+				<b>Mail:</b> <%= current_user.email %>
+			</li>
+			<li class="list-group-item">
+				<b>Registration Date: </b> <%= current_user.created_at.to_formatted_s %>
+			</li>
+		</ul>
+		<%= link_to 'Edit Account', edit_user_path(current_user), class: "btn btn-sm btn-primary" %>
+		<%= link_to 'Delete Account', delete_user_url(current_user), class: "btn btn-sm btn-danger", method: :delete, data: { confirm: 'Are you sure?' } %>
+	</div>
+</div>
 <% end %>
