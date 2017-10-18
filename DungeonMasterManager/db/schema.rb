@@ -22,6 +22,8 @@ ActiveRecord::Schema.define(version: 20171017200037) do
   end
 
   create_table "campaign_notes", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.bigint "category_id"
+    t.bigint "game_id"
     t.string "title"
     t.text "content"
     t.boolean "visible_by_players"
@@ -29,12 +31,16 @@ ActiveRecord::Schema.define(version: 20171017200037) do
     t.string "text"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["category_id"], name: "index_campaign_notes_on_category_id"
+    t.index ["game_id"], name: "index_campaign_notes_on_game_id"
   end
 
   create_table "categories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.bigint "game_id"
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["game_id"], name: "index_categories_on_game_id"
   end
 
   create_table "characters", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|

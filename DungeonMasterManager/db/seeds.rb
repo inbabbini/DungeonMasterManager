@@ -113,3 +113,21 @@ characters.each do | c |
     c.achievements << Achievement.new(description: achievement_names[rand(0..achievement_names.size - 1)])
   end
 end
+
+# --------------- Create Categories ------------------
+
+g1categories =[ Category.new(name: "Locations"), Category.new(name: "NPCs")]
+game1.categories << g1categories
+
+g2categories =[ Category.new(name: "Locations"), Category.new(name: "NPCs")]
+game2.categories << g2categories
+
+
+# ------------- Create Campaign Notes --------------------------
+
+game1.campaign_notes << CampaignNote.new(category: g1categories[1], title: 'El Ope', content: 'Falta descripcion vieja.', visible_by_players: false)
+game1.campaign_notes << CampaignNote.new(category: g1categories[1], title: 'El Oso', content: 'Falta descripcion vieja.', visible_by_players: true)
+
+game2.campaign_notes << CampaignNote.new(category: g2categories[0], title: 'Welton', content: 'Weltons town is a peacefull place', visible_by_players: true)
+game2.campaign_notes << CampaignNote.new(category: g2categories[0], title: 'Wolves Den', content: 'Where the wolves dwell', visible_by_players: true, dm_annotation: '6 wolves total, plus Bolt and Flame')
+game2.campaign_notes << CampaignNote.new(category: g2categories[1], title: 'Flame and Bolt', content: 'The 2 magic infused wolves', visible_by_players: false)

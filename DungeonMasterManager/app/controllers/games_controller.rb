@@ -14,7 +14,9 @@ class GamesController < ApplicationController
   # GET /games/1
   # GET /games/1.json
   def show
-
+    @categories = Category.includes(:campaign_notes).where(game: @game)
+    @characters = user_is_dm? ? Character.where(game: @game) : Character.where(game: @game, user: current_user)
+    # @campaign_notes = CampaignNote.where('game_id = ' + @game.id.to_s)
   end
 
   # GET /games/new
@@ -84,5 +86,9 @@ class GamesController < ApplicationController
 
     def check_edition_auth
       redirect_back fallback_location: games_url, notice: "Non authorized action" unless current_user.is_owner? @game
+    end
+
+    def user_is_dm?
+      return current_user == @game.dungeon_master
     end
 end
