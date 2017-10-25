@@ -16,9 +16,9 @@
       <tr>
         <td><%= note.title %></td>
         <td><%= note.content %></td>
-        <td><%= link_to 'Show', note %></td>
-        <td><%= link_to 'Edit', edit_note_path(note) %></td>
-        <td><%= link_to 'Destroy', note, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Show', game_character_note_path(note.character.game, note.character, note) %></td>
+        <td><%= link_to 'Edit', edit_game_character_note_path(note.character.game, note.character, note) %></td>
+        <td><%= link_to 'Destroy', game_character_note_path(note.character.game, note.character, note), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -26,4 +26,4 @@
 
 <br>
 
-<%= link_to 'New Note', new_note_path %>
+<%= link_to 'New Note', new_game_character_note_path %>

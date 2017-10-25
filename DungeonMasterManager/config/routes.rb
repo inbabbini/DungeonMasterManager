@@ -19,6 +19,8 @@ Rails.application.routes.draw do
   patch 'users/:id', to: 'users#update', as: 'update_user'
   delete 'users', to: 'user#destroy', as: 'delete_user'
 
+  #Special routes
+  get 'games/:game_id/campaign_notes/:id/change_visibility', to: 'campaign_notes#change_visibility', as: 'change_game_campaign_note_visibility'
 
   resources :games do
     resources :characters do

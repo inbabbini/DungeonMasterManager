@@ -4,10 +4,10 @@
   </div>
 
   <div class="col-sm-8">
-    <legend>New Campaign Note</legend>
+    <legend>Edit Category</legend>
 
-    <%= form_with(model: @campaign_note, url: game_campaign_notes_url(@game), local: true, class: 'form-horizontal') do |form| %>
-      <%= render 'form_errors', campaign_note: @campaign_note %>
+    <%= form_with(model: @category, url: game_category_path(@game, @category), local: true) do |form| %>
+      <%= render 'form_errors', category: @category %>
       <%= render 'form_fields', form: form %>
     <% end %>
   </div>

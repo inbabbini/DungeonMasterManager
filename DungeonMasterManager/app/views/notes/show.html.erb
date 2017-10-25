@@ -10,5 +10,5 @@
   <%= @note.content %>
 </p>
 
-<%= link_to 'Edit', edit_note_path(@note) %> |
-<%= link_to 'Back', notes_path %>
+<%= link_to 'Edit', edit_game_character_note_path(@note.character.game, @note.character, @note) %> |
+<%= link_to 'Back', game_character_path(@note.character.game, @note.character) %>

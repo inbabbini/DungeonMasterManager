@@ -2,5 +2,5 @@
 
 <%= render 'form', note: @note %>
 
-<%= link_to 'Show', @note %> |
-<%= link_to 'Back', notes_path %>
+<%= link_to 'Show', game_character_note_path(@note.character.game, @note.character, @note) %> |
+<%= link_to 'Back', game_character_notes_path(@note.character.game, @note.character) %>

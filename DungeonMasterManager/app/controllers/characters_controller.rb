@@ -4,12 +4,13 @@ class CharactersController < ApplicationController
   # GET /characters
   # GET /characters.json
   def index
-    @characters = Character.all
+    @characters = Character.where(game_id: params[:game_id])
   end
 
   # GET /characters/1
   # GET /characters/1.json
   def show
+    @character = Character.includes([:statuses, :skills, :inventory, :items, :traits, :notes, :achievements]).where(game_id: params[:game_id], id: params[:id]).first
   end
 
   # GET /characters/new
@@ -69,6 +70,6 @@ class CharactersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def character_params
-      params.require(:character).permit(:name, :race, :description, :biography)
+      params.require(:character).permit(:game_id, :name, :race, :description, :biography)
     end
 end

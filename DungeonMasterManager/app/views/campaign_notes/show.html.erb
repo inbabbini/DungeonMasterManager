@@ -1,29 +1,41 @@
-<p id="notice"><%= notice %></p>
+<legend> <%= @game.name %> Campaign Note </legend>
+<div class="row">
+  <div class="col-2">
+    <% if user_is_dm? %>
+      <%= link_to 'Change Visibility', change_game_campaign_note_visibility_path(@game, @campaign_note), class: "btn btn-primary text-light btn-block" %>
+      <%= link_to 'Edit Note', edit_game_campaign_note_path(@game, @campaign_note), class: "btn btn-primary text-light btn-block" %>
+      <%= link_to 'Destroy', game_campaign_note_path(@game, @campaign_note), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger text-light btn-block" %>
+    <% end %>
+    <%= link_to 'Back to Campaign Notes', game_campaign_notes_path, class: "btn btn-dark text-light btn-block" %>
+    <%= link_to 'Back to Game', @game, class: "btn btn-dark text-light btn-block" %>
+  </div>
+  <div class="col-8">
 
-<p>
-  <strong>Title:</strong>
-  <%= @campaign_note.title %>
-</p>
+    <div class="card mb-3">
+      <div class="card-header bg-dark text-light">
+        <%= @campaign_note.title %>
+        <div class="pull-right"> Visible to <%= @campaign_note.visible_by_players ? 'All' : 'DM'%></div>
+      </div>
 
-<p>
-  <strong>Content:</strong>
-  <%= @campaign_note.content %>
-</p>
+      <div class="card-body">
+        <!-- <h4 class="card-title"><%= @campaign_note.title %> </h4> -->
+        <p class="card-text">
+          <%= @campaign_note.content %>
+        </p>
 
-<p>
-  <strong>Visible by players:</strong>
-  <%= @campaign_note.visible_by_players %>
-</p>
+        <% if user_is_dm? %>
+          <br>
+          <h4>DM Annotation:</h4>
+          <div class="well">
+            <%= @campaign_note.dm_annotation %>
+          </div>
+        <% end %>
+        <div class="pull-right">
+          <small class="text-muted">Created <%= distance_of_time_in_words_to_now(@campaign_note.updated_at) %> |
+          Last updated <%= distance_of_time_in_words_to_now(@campaign_note.updated_at) %></small>
+        </div>
+      </div>
+    </div>
 
-<p>
-  <strong>Dm annotation:</strong>
-  <%= @campaign_note.dm_annotation %>
-</p>
-
-<p>
-  <strong>Text:</strong>
-  <%= @campaign_note.text %>
-</p>
-
-<%= link_to 'Edit', edit_campaign_note_path(@campaign_note) %> |
-<%= link_to 'Back', campaign_notes_path %>
+  </div>
+</div>

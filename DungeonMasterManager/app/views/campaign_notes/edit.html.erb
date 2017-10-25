@@ -1,6 +1,16 @@
-<h1>Editing Campaign Note</h1>
+<div class="row">
+  <div class="col-sm-2">
+    <%= link_to 'Back to Note', game_campaign_note_path(@game, @campaign_note), class: 'btn btn-block btn-dark text-light' %>
+    <%= link_to 'Back to Campaign Notes', game_campaign_notes_path(@game), class: 'btn btn-block btn-dark text-light' %>
+  </div>
 
-<%= render 'form', campaign_note: @campaign_note %>
+  <div class="col-sm-8">
+    <legend>Editing Campaign Note</legend>
 
-<%= link_to 'Show', @campaign_note %> |
-<%= link_to 'Back', campaign_notes_path %>
+    <%= form_with(model: @campaign_note, method: 'patch', url: game_campaign_note_url(@game, @campaign_note), local: true) do |form| %>
+      <%= render 'form_errors', campaign_note: @campaign_note %>
+      <%= render 'form_fields', form: form %>
+    <% end %>
+  </div>
+
+</div>

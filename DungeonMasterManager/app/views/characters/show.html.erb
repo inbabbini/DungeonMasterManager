@@ -1,24 +1,125 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Name:</strong>
-  <%= @character.name %>
-</p>
-
-<p>
-  <strong>Race:</strong>
-  <%= @character.race %>
-</p>
-
-<p>
-  <strong>Description:</strong>
-  <%= @character.description %>
-</p>
-
-<p>
-  <strong>Biography:</strong>
-  <%= @character.biography %>
-</p>
-
-<%= link_to 'Edit', edit_character_path(@character) %> |
-<%= link_to 'Back', characters_path %>
+<div class="row">
+  <div class="col-sm-2">
+    <%= link_to 'Edit Character', edit_game_character_path(@character.game, @character), class: 'btn btn-primary text-light btn-block' %>
+    <%= link_to 'Back to Game', game_path(@character.game), class: 'btn btn-dark text-light btn-block' %>
+  </div>
+  <div class="col-sm-10">
+    <div class="row">
+      <!-- Column1 -->
+      <div class="col-md-4 col-xs-12">
+        <legend> <%= @character.name %> </legend>
+        <!-- TODO: Portrait card -->
+        <p>
+          <strong>Race:</strong>
+          <%= @character.race %>
+        </p>
+        <div class="card mb-3">
+          <div class="card-header bg-dark text-light">Description</div>
+          <div class="card-body">
+            <p class="card-text">
+              <% if @character.description %>
+                <%= @character.description %>
+              <% else %>
+                No description available
+              <% end %>
+            </p>
+          </div>
+        </div>
+        <div class="card mb-3">
+          <div class="card-header bg-dark text-light">Biography</div>
+          <div class="card-body">
+            <p class="card-text">
+              <% if @character.biography %>
+                <%= @character.biography %>
+              <% else %>
+                No biography available
+              <% end %>
+            </p>
+          </div>
+        </div>
+      </div>
+      <!-- Column2 -->
+      <div class="col-md-4 col-xs-12">
+        <div class="card mb-3">
+          <div class="card-header bg-dark text-light">Statuses</div>
+              <% if @character.statuses %>
+                <% @character.statuses.each do |cstatus| %>
+                <div class="card-body">
+                  <h5 class="card-title"><%= cstatus.name %></h5>
+                  <p class="card-text"><%= cstatus.description %></p>
+                </div>
+                <% end %>
+              <% else %>
+                -
+              <% end %>
+        </div>
+        <div class="card mb-3">
+          <div class="card-header bg-dark text-light">Skills</div>
+          <% if @character.skills %>
+            <% @character.skills.each do |cskill| %>
+            <div class="card-body">
+              <h5 class="card-title"><%= cskill.name %></h5>
+              <p class="card-text"><%= cskill.description %></p>
+            </div>
+            <% end %>
+          <% else %>
+            -
+          <% end %>
+        </div>
+        <div class="card mb-3">
+          <div class="card-header bg-dark text-light">Inventory</div>
+          <% if @character.items %>
+            <% @character.items.each do |citem| %>
+            <div class="card-body">
+              <h5 class="card-title"><%= citem.name %> <div class="pull-right"> <%= citem.quantity %> </div></h5>
+              <p class="card-text"><%= citem.description %></p>
+            </div>
+            <% end %>
+          <% else %>
+            -
+          <% end %>
+        </div>
+      </div>
+      <!-- Column3 -->
+      <div class="col-md-4 col-xs-12">
+        <div class="card mb-3">
+          <div class="card-header bg-dark text-light">Traits</div>
+          <% if @character.traits %>
+            <% @character.traits.each do |ctrait| %>
+            <div class="card-body">
+              <p class="card-text"><%= ctrait.description %></p>
+            </div>
+            <% end %>
+          <% else %>
+            -
+          <% end %>
+        </div>
+        <div class="card mb-3">
+          <div class="card-header bg-dark text-light">Notes</div>
+          <% if @character.notes %>
+            <% @character.notes.each do |cnote| %>
+            <div class="card-body">
+              <h5 class="card-title"><%= link_to cnote.title, game_character_note_path(@character.game, @character, cnote) %></h5>
+            </div>
+            <% end %>
+          <% else %>
+            -
+          <% end %>
+        </div>
+        <div class="card mb-3">
+          <div class="card-header bg-dark text-light">Achievements</div>
+          <% if @character.achievements %>
+            <% @character.achievements.each do |cachievement| %>
+            <div class="card-body">
+              <h5 class="card-title"><%= cachievement.name %></h5>
+              <p class="card-text"><%= cachievement.description %></p>
+            </div>
+            <% end %>
+          <% else %>
+            -
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

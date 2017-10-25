@@ -14,9 +14,13 @@ class GamesController < ApplicationController
   # GET /games/1
   # GET /games/1.json
   def show
-    @categories = Category.includes(:campaign_notes).where(game: @game)
-    @characters = user_is_dm? ? Character.where(game: @game) : Character.where(game: @game, user: current_user)
-    # @campaign_notes = CampaignNote.where('game_id = ' + @game.id.to_s)
+    if user_is_dm?
+      @categories = Category.includes(:campaign_notes).where(game: @game)
+      @characters = Character.where(game: @game)
+    else
+      @categories = Category.includes(:campaign_notes).where(campaign_notes: {visible_by_players: true}).for_game(@game)
+      @characters = Character.where(game: @game, user: current_user)
+    end
   end
 
   # GET /games/new

@@ -110,7 +110,7 @@ end
 achievement_names = ['Animal Lover', 'Mass murderer', 'Over 9000!', 'Lore master', 'The Impaler', 'Skeleton Slayer', 'King of the Hill', 'Jack of All Trades, Master of None']
 characters.each do | c |
   rand(0..1).times do
-    c.achievements << Achievement.new(description: achievement_names[rand(0..achievement_names.size - 1)])
+    c.achievements << Achievement.new(name: achievement_names[rand(0..achievement_names.size - 1)])
   end
 end
 
