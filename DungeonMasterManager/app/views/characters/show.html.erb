@@ -57,7 +57,12 @@
               <% end %>
         </div>
         <div class="card mb-3">
-          <div class="card-header bg-dark text-light">Skills</div>
+          <div class="card-header bg-dark text-light">
+            Skills
+            <div class="pull-right">
+              <%= link_to 'Add', new_game_character_skill(@game, @character) %>
+            </div>
+          </div>
           <% if @character.skills %>
             <% @character.skills.each do |cskill| %>
             <div class="card-body">
@@ -70,11 +75,16 @@
           <% end %>
         </div>
         <div class="card mb-3">
-          <div class="card-header bg-dark text-light">Inventory</div>
+          <div class="card-header bg-dark text-light">
+            Inventory
+            <div class="pull-right">
+              <%= link_to 'Add', new_game_character_item(@game, @character) %>
+            </div>
+          </div>
           <% if @character.items %>
             <% @character.items.each do |citem| %>
             <div class="card-body">
-              <h5 class="card-title"><%= citem.name %> <div class="pull-right"> <%= citem.quantity %> </div></h5>
+              <h5 class="card-title"><%= citem.name %> (<%= citem.quantity %>) </h5>
               <p class="card-text"><%= citem.description %></p>
             </div>
             <% end %>

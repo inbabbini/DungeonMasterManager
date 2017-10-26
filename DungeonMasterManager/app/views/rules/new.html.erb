@@ -1,5 +1,15 @@
-<h1>New Rule</h1>
+<div class="row">
+  <div class="col-sm-2">
+    <%= link_to 'Back to Game', game_path(@game), class: 'btn btn-block btn-dark text-light' %>
+  </div>
 
-<%= render 'form', rule: @rule %>
+  <div class="col-sm-8">
+    <legend>New Rule</legend>
 
-<%= link_to 'Back', rules_path %>
+    <%= form_with(model: rule, url: game_rules_path(@game) local: true) do |form| %>
+      <%= render 'form_errors', rule: @rule %>
+      <%= render 'form_fields', form: form %>
+    <% end %>
+  </div>
+
+</div>
