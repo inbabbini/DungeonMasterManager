@@ -1,22 +1,4 @@
-<%= form_with(model: rule, local: true) do |form| %>
-  <% if rule.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(rule.errors.count, "error") %> prohibited this rule from being saved:</h2>
-
-      <ul>
-      <% rule.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="field">
-    <%= form.label :description %>
-    <%= form.text_field :description, id: :rule_description %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
+<%= form_with(model: rule, url: game_rule_path(@game, @rule) local: true) do |form| %>
+  <%= render 'form_errors', rule: @rule %>
+  <%= render 'form_fields', form: form %>
 <% end %>
