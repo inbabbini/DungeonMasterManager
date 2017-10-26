@@ -1,5 +1,6 @@
 class CharactersController < ApplicationController
   before_action :set_character, only: [:show, :edit, :update, :destroy]
+  before_action :set_game
 
   # GET /characters
   # GET /characters.json
@@ -26,10 +27,12 @@ class CharactersController < ApplicationController
   # POST /characters.json
   def create
     @character = Character.new(character_params)
+    @character.game = @game
+    @character.user = current_user
 
     respond_to do |format|
       if @character.save
-        format.html { redirect_to @character, notice: 'Character was successfully created.' }
+        format.html { redirect_to game_character_path(@game, @character), notice: 'Character was successfully created.' }
         format.json { render :show, status: :created, location: @character }
       else
         format.html { render :new }
@@ -43,7 +46,7 @@ class CharactersController < ApplicationController
   def update
     respond_to do |format|
       if @character.update(character_params)
-        format.html { redirect_to @character, notice: 'Character was successfully updated.' }
+        format.html { redirect_to game_character_path(@game, @character), notice: 'Character was successfully updated.' }
         format.json { render :show, status: :ok, location: @character }
       else
         format.html { render :edit }
@@ -57,7 +60,7 @@ class CharactersController < ApplicationController
   def destroy
     @character.destroy
     respond_to do |format|
-      format.html { redirect_to characters_url, notice: 'Character was successfully destroyed.' }
+      format.html { redirect_to game_path(@game), notice: 'Character was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

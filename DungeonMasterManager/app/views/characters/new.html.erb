@@ -1,5 +1,14 @@
-<h1>New Character</h1>
+<div class="row">
+  <div class="col-sm-2">
+    <%= link_to 'Back to Game', game_path(@game), class: 'btn btn-block btn-dark text-light' %>
+  </div>
 
-<%= render 'form', character: @character %>
+  <div class="col-sm-8">
+    <legend>New Character</legend>
 
-<%= link_to 'Back', characters_path %>
+    <%= form_with(model: @character, url: game_characters_path(@game), local: true, class: 'form-horizontal') do |form| %>
+      <%= render 'form_errors', character: @character %>
+      <%= render 'form_fields', form: form %>
+    <% end %>
+  </div>
+</div>

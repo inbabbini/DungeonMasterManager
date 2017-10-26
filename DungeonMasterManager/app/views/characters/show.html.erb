@@ -41,7 +41,10 @@
       <!-- Column2 -->
       <div class="col-md-4 col-xs-12">
         <div class="card mb-3">
-          <div class="card-header bg-dark text-light">Statuses</div>
+          <div class="card-header bg-dark text-light">
+            Statuses
+            <div class="pull-right"><%= link_to 'Add', new_game_character_status_path(@game, @character) %></div>
+          </div>
               <% if @character.statuses %>
                 <% @character.statuses.each do |cstatus| %>
                 <div class="card-body">
@@ -50,7 +53,7 @@
                 </div>
                 <% end %>
               <% else %>
-                -
+                No statuses
               <% end %>
         </div>
         <div class="card mb-3">
@@ -63,7 +66,7 @@
             </div>
             <% end %>
           <% else %>
-            -
+            No skills
           <% end %>
         </div>
         <div class="card mb-3">
@@ -76,7 +79,7 @@
             </div>
             <% end %>
           <% else %>
-            -
+            No items
           <% end %>
         </div>
       </div>
@@ -91,7 +94,7 @@
             </div>
             <% end %>
           <% else %>
-            -
+            No traits
           <% end %>
         </div>
         <div class="card mb-3">
@@ -103,7 +106,7 @@
             </div>
             <% end %>
           <% else %>
-            -
+            No notes
           <% end %>
         </div>
         <div class="card mb-3">
@@ -116,7 +119,7 @@
             </div>
             <% end %>
           <% else %>
-            -
+            No achievements
           <% end %>
         </div>
       </div>
