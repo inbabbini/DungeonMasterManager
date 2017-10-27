@@ -1,9 +1,13 @@
 class User < ApplicationRecord
-  # Model Validations
   # Model Associations
   has_many :mastered_games, class_name: 'Game', inverse_of: :dungeon_master, foreign_key: 'dungeon_master_id'
   has_and_belongs_to_many :played_games, class_name: 'Game'
   has_many :characters
+
+  # Model Validations
+  validates :name, :email, presence: true
+  validates :name, :email, length: { in: 4..255 }
+  validates :email, uniqueness: true
 
   # Class Methods
   def self.find_or_create_from_auth_hash(auth)

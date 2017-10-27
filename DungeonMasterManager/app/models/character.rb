@@ -1,6 +1,8 @@
 class Character < ApplicationRecord
+  #Callbacks
   before_create :add_inventory
 
+  #Associations
   belongs_to :game
 	belongs_to :user
 	has_one :inventory
@@ -11,6 +13,11 @@ class Character < ApplicationRecord
 	has_many :notes
 	has_many :achievements
 
+  #Validations
+  validates :game, :user, :name, :race, :inventory, presence: true
+  validates :name, :race, :description, length: { in: 1..255 }
+
+  #Instance methods
   def add_inventory
     self.inventory = Inventory.new(character: self, capacity: 30)
   end
