@@ -18,7 +18,7 @@
       <% if user_signed_in? %>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Hola, <%= current_user.name %>
+          Hello, <%= current_user.name %>
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
           <%= link_to 'My Games', games_path, class:'dropdown-item' %>

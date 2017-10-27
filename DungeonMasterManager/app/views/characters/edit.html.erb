@@ -7,7 +7,7 @@
   <div class="col-sm-8">
     <legend>Editing Character</legend>
 
-    <%= form_with(model: character, url: game_character_path(@game, @character), local: true) do |form| %>
+    <%= form_with(model: @character, url: game_character_path(@game, @character), local: true) do |form| %>
       <%= render 'form_errors', character: @character %>
       <%= render 'form_fields', form: form %>
     <% end %>

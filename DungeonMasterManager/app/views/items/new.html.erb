@@ -6,7 +6,7 @@
   <div class="col-sm-8">
     <legend>New Item</legend>
 
-    <%= form_with(model: item, url: game_character_items_path(@game, @character) local: true) do |form| %>
+    <%= form_with(model: @item, url: game_character_items_path(@game, @character), local: true) do |form| %>
       <% render 'form_errors', item: @item %>
       <% render 'form_fields', form: form %>
     <% end %>

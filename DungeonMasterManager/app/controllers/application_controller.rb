@@ -1,6 +1,8 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   helper_method :current_user
+  helper_method :user_is_dm?
+  helper_method :user_signed_in?
 
   def authenticate
   	redirect_to :login unless user_signed_in?
@@ -22,8 +24,9 @@ class ApplicationController < ActionController::Base
   def set_game
     @game = Game.find(params[:game_id])
   end
+
+  def set_character
+    @character = Character.find(params[:character_id])
+  end
   
-  helper_method :user_is_dm?
-  helper_method :current_user
-  helper_method :user_signed_in?
 end

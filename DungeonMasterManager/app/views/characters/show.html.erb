@@ -48,7 +48,13 @@
               <% if @character.statuses %>
                 <% @character.statuses.each do |cstatus| %>
                 <div class="card-body">
-                  <h5 class="card-title"><%= cstatus.name %></h5>
+                  <h5 class="card-title">
+                    <%= cstatus.name %>
+                    <div class="pull-right h6">
+                      <%= link_to 'Edit', edit_game_character_status_path(@game, @character, cstatus) %> |
+                      <%= link_to 'Delete', game_character_status_path(@game, @character, cstatus), method: :delete, data: { confirm: 'Are you sure?' }%>
+                    </div>
+                  </h5>
                   <p class="card-text"><%= cstatus.description %></p>
                 </div>
                 <% end %>
@@ -60,13 +66,19 @@
           <div class="card-header bg-dark text-light">
             Skills
             <div class="pull-right">
-              <%= link_to 'Add', new_game_character_skill(@game, @character) %>
+              <%= link_to 'Add', new_game_character_skill_path(@game, @character) %>
             </div>
           </div>
           <% if @character.skills %>
             <% @character.skills.each do |cskill| %>
             <div class="card-body">
-              <h5 class="card-title"><%= cskill.name %></h5>
+              <h5 class="card-title">
+                <%= cskill.name %>
+                <div class="pull-right h6">
+                  <%= link_to 'Edit', edit_game_character_skill_path(@game, @character, cskill) %> |
+                  <%= link_to 'Delete', game_character_skill_path(@game, @character, cskill), method: :delete, data: { confirm: 'Are you sure?' }%>
+                </div>
+              </h5>
               <p class="card-text"><%= cskill.description %></p>
             </div>
             <% end %>
@@ -78,13 +90,19 @@
           <div class="card-header bg-dark text-light">
             Inventory
             <div class="pull-right">
-              <%= link_to 'Add', new_game_character_item(@game, @character) %>
+              <%= link_to 'Add', new_game_character_item_path(@game, @character) %>
             </div>
           </div>
           <% if @character.items %>
             <% @character.items.each do |citem| %>
             <div class="card-body">
-              <h5 class="card-title"><%= citem.name %> (<%= citem.quantity %>) </h5>
+              <h5 class="card-title">
+                <%= citem.name %> (<%= citem.quantity %>)
+                <div class="pull-right h6">
+                  <%= link_to 'Edit', edit_game_character_item_path(@game, @character, citem) %> |
+                  <%= link_to 'Delete', game_character_item_path(@game, @character, citem), method: :delete, data: { confirm: 'Are you sure?' }%>
+                </div>
+              </h5>
               <p class="card-text"><%= citem.description %></p>
             </div>
             <% end %>
@@ -96,11 +114,22 @@
       <!-- Column3 -->
       <div class="col-md-4 col-xs-12">
         <div class="card mb-3">
-          <div class="card-header bg-dark text-light">Traits</div>
+          <div class="card-header bg-dark text-light">
+            Traits
+            <div class="pull-right">
+              <%= link_to 'Add', new_game_character_trait_path(@game, @character) %>
+            </div>
+          </div>
           <% if @character.traits %>
             <% @character.traits.each do |ctrait| %>
             <div class="card-body">
-              <p class="card-text"><%= ctrait.description %></p>
+              <p class="card-text">
+                <div class="pull-right h6">
+                  <%= link_to 'Edit', edit_game_character_trait_path(@game, @character, ctrait) %> |
+                  <%= link_to 'Delete', game_character_trait_path(@game, @character, ctrait), method: :delete, data: { confirm: 'Are you sure?' }%>
+                </div>
+                <%= ctrait.description %>
+              </p>
             </div>
             <% end %>
           <% else %>
@@ -108,7 +137,12 @@
           <% end %>
         </div>
         <div class="card mb-3">
-          <div class="card-header bg-dark text-light">Notes</div>
+          <div class="card-header bg-dark text-light">
+            Notes
+            <div class="pull-right">
+              <%= link_to 'Add', new_game_character_note_path(@game, @character) %>
+            </div>
+          </div>
           <% if @character.notes %>
             <% @character.notes.each do |cnote| %>
             <div class="card-body">
@@ -120,11 +154,22 @@
           <% end %>
         </div>
         <div class="card mb-3">
-          <div class="card-header bg-dark text-light">Achievements</div>
+          <div class="card-header bg-dark text-light">
+            Achievements
+            <div class="pull-right">
+              <%= link_to 'Add', new_game_character_achievement_path(@game, @character) %>
+            </div>
+          </div>
           <% if @character.achievements %>
             <% @character.achievements.each do |cachievement| %>
             <div class="card-body">
-              <h5 class="card-title"><%= cachievement.name %></h5>
+              <h5 class="card-title">
+                <%= cachievement.name %>
+                <div class="pull-right h6">
+                  <%= link_to 'Edit', edit_game_character_achievement_path(@game, @character, cachievement) %> |
+                  <%= link_to 'Delete', game_character_achievement_path(@game, @character, cachievement), method: :delete, data: { confirm: 'Are you sure?' }%>
+                </div>
+              </h5>
               <p class="card-text"><%= cachievement.description %></p>
             </div>
             <% end %>

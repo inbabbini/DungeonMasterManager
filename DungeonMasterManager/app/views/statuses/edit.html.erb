@@ -4,9 +4,9 @@
   </div>
 
   <div class="col-sm-8">
-    <legend>New Status</legend>
+    <legend>Editing Status</legend>
 
-    <%= form_with(model: @status, url: game_character_statuses_path(@game, @character), local: true) do |form| %>
+    <%= form_with(model: @status, url: game_character_status_path(@game, @character, @status), local: true) do |form| %>
       <%= render 'form_errors', status: @status %>
       <%= render 'form_fields', form: form %>
     <% end %>

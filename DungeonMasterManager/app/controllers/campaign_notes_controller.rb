@@ -6,11 +6,11 @@ class CampaignNotesController < ApplicationController
   # GET /campaign_notes.json
   def index
     if user_is_dm?
-      @categories = Category.includes(:campaign_notes).for_game(@game)
+      @categories = Category.includes(:campaign_notes).for_game(@game).order("name DESC")
       # @categories = Category.includes(:campaign_notes).for_game(@game)
       # @campaign_notes = CampaignNote.includes(:category).where(game_id: params[:game_id])
     else
-      @categories = Category.includes(:campaign_notes).where(campaign_notes: {visible_by_players: true}).for_game(@game)
+      @categories = Category.includes(:campaign_notes).where(campaign_notes: {visible_by_players: true}).for_game(@game).order("name DESC")
       # @categories = @campaign_notes.map {|cp| cp.category }.uniq
       # @campaign_notes = CampaignNote.includes(:category).where(game_id: params[:game_id], visible_by_players: true)
     end

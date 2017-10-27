@@ -29,6 +29,7 @@ Rails.application.routes.draw do
       resources :notes
       resources :achievements
       resources :statuses
+      resources :traits
     end
     resources :campaign_notes
     resources :categories

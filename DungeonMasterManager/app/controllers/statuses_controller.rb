@@ -1,6 +1,7 @@
 class StatusesController < ApplicationController
   before_action :set_status, only: [:show, :edit, :update, :destroy]
   before_action :set_game
+  before_action :set_character
 
   # GET /characters
   # GET /characters.json
@@ -43,7 +44,7 @@ class StatusesController < ApplicationController
   # PATCH/PUT /characters/1.json
   def update
     respond_to do |format|
-      if @status.update(character_params)
+      if @status.update(status_params)
         format.html { redirect_to game_character_path(@game, @character), notice: 'Status was successfully updated.' }
         format.json { render :show, status: :ok, location: @status }
       else
@@ -58,17 +59,15 @@ class StatusesController < ApplicationController
   def destroy
     @status.destroy
     respond_to do |format|
-      format.html { redirect_to character_game_path(@game, @character), notice: 'Status was successfully destroyed.' }
+      format.html { redirect_to game_character_path(@game, @character), notice: 'Status was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_character
-      @character = Character.find(params[:character_id])
+    def set_status
+      @status = Status.find(params[:id])
     end
-
     # Never trust parameters from the scary internet, only allow the white list through.
     def status_params
       params.require(:status).permit(:game_id, :character_id, :name, :race, :description, :biography)

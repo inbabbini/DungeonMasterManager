@@ -6,7 +6,7 @@
   <div class="col-sm-8">
     <legend>New Achievement</legend>
 
-    <%= form_with(model: achievement, url: game_character_achievements_path(@game, @character) local: true) do |form| %>
+    <%= form_with(model: @achievement, url: game_character_achievements_path(@game, @character), local: true) do |form| %>
       <% render 'form_errors', achievement: @achievement %>
       <% render 'form_fields', form: form %>
     <% end %>

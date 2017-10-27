@@ -15,10 +15,10 @@ class GamesController < ApplicationController
   # GET /games/1.json
   def show
     if user_is_dm?
-      @categories = Category.includes(:campaign_notes).where(game: @game)
+      @categories = Category.includes(:campaign_notes).where(game: @game).order("name DESC")
       @characters = Character.where(game: @game)
     else
-      @categories = Category.includes(:campaign_notes).where(campaign_notes: {visible_by_players: true}).for_game(@game)
+      @categories = Category.includes(:campaign_notes).where(campaign_notes: {visible_by_players: true}).for_game(@game).order("name DESC")
       @characters = Character.where(game: @game, user: current_user)
     end
   end

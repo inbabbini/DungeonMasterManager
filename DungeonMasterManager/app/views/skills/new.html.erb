@@ -6,7 +6,7 @@
   <div class="col-sm-8">
     <legend>New Skill</legend>
 
-    <%= form_with(model: skill, url: game_character_skills_path(@game, @character), local: true) do |form| %>
+    <%= form_with(model: @skill, url: game_character_skills_path(@game, @character), local: true) do |form| %>
       <%= render 'form_errors', skill: @skill %>
       <%= render 'form_fields', form: form %>
     <% end %>

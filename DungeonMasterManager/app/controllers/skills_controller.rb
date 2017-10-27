@@ -1,5 +1,7 @@
 class SkillsController < ApplicationController
   before_action :set_skill, only: [:show, :edit, :update, :destroy]
+  before_action :set_game
+  before_action :set_character
 
   # GET /skills
   # GET /skills.json
@@ -25,10 +27,11 @@ class SkillsController < ApplicationController
   # POST /skills.json
   def create
     @skill = Skill.new(skill_params)
+    @skill.character = @character
 
     respond_to do |format|
       if @skill.save
-        format.html { redirect_to @skill, notice: 'Skill was successfully created.' }
+        format.html { redirect_to game_character_path(@game, @character), notice: 'Skill was successfully created.' }
         format.json { render :show, status: :created, location: @skill }
       else
         format.html { render :new }
@@ -42,7 +45,7 @@ class SkillsController < ApplicationController
   def update
     respond_to do |format|
       if @skill.update(skill_params)
-        format.html { redirect_to @skill, notice: 'Skill was successfully updated.' }
+        format.html { redirect_to game_character_path(@game, @character), notice: 'Skill was successfully updated.' }
         format.json { render :show, status: :ok, location: @skill }
       else
         format.html { render :edit }
@@ -69,6 +72,6 @@ class SkillsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def skill_params
-      params.require(:skill).permit(:name, :description)
+      params.require(:skill).permit(:game_id, :character_id, :name, :description)
     end
 end

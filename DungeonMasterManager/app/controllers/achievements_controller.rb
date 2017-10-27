@@ -1,5 +1,7 @@
 class AchievementsController < ApplicationController
   before_action :set_achievement, only: [:show, :edit, :update, :destroy]
+  before_action :set_game
+  before_action :set_character
 
   # GET /achievements
   # GET /achievements.json
@@ -25,10 +27,11 @@ class AchievementsController < ApplicationController
   # POST /achievements.json
   def create
     @achievement = Achievement.new(achievement_params)
+    @achievement.character = @character
 
     respond_to do |format|
       if @achievement.save
-        format.html { redirect_to @achievement, notice: 'Achievement was successfully created.' }
+        format.html { redirect_to game_character_path(@game, @character), notice: 'Achievement was successfully created.' }
         format.json { render :show, status: :created, location: @achievement }
       else
         format.html { render :new }
@@ -42,7 +45,7 @@ class AchievementsController < ApplicationController
   def update
     respond_to do |format|
       if @achievement.update(achievement_params)
-        format.html { redirect_to @achievement, notice: 'Achievement was successfully updated.' }
+        format.html { redirect_to game_character_path(@game, @character), notice: 'Achievement was successfully updated.' }
         format.json { render :show, status: :ok, location: @achievement }
       else
         format.html { render :edit }
@@ -56,7 +59,7 @@ class AchievementsController < ApplicationController
   def destroy
     @achievement.destroy
     respond_to do |format|
-      format.html { redirect_to achievements_url, notice: 'Achievement was successfully destroyed.' }
+      format.html { redirect_to game_character_path(@game, @character), notice: 'Achievement was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -69,6 +72,6 @@ class AchievementsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def achievement_params
-      params.require(:achievement).permit(:name, :description)
+      params.require(:achievement).permit(:game_id, :character_id, :name, :description)
     end
 end

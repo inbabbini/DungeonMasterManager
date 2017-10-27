@@ -1,14 +1,22 @@
-<p id="notice"><%= notice %></p>
+<legend> <%= @character.name %> Note </legend>
+<div class="row">
+  <div class="col-2">
+    <%= link_to 'Edit Note',  edit_game_character_note_path(@game, @character, @note), class: "btn btn-primary text-light btn-block" %>
+    <%= link_to 'Delete Note',  game_character_note_path(@game, @character, @note), class: "btn btn-danger text-light btn-block", method: :delete, data: { confirm: 'Are you sure?' } %>
+    <%= link_to 'Back to Character', game_character_path(@game, @character), class: "btn btn-dark text-light btn-block" %>
+  </div>
+  <div class="col-8">
 
-<p>
-  <strong>Title:</strong>
-  <%= @note.title %>
-</p>
+    <div class="card mb-3">
+      <div class="card-header bg-dark text-light">
+        <%= @note.title %>
+      </div>
+      <div class="card-body">
+        <p class="card-text">
+          <%= @note.content %>
+        </p>
+      </div>
+    </div>
+  </div>
 
-<p>
-  <strong>Content:</strong>
-  <%= @note.content %>
-</p>
-
-<%= link_to 'Edit', edit_game_character_note_path(@note.character.game, @note.character, @note) %> |
-<%= link_to 'Back', game_character_path(@note.character.game, @note.character) %>
+</div>

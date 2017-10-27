@@ -1,5 +1,8 @@
 <div class="row justify-content-center">
-  <div class="col-sm-8 col-xs-12">
+  <div class="col-sm-2 col-xs-12">
+    <%= link_to 'Back to Games', games_path, class: 'btn btn-block btn-dark text-light' %>
+  </div>
+  <div class="col-sm-6 col-xs-12">
         <legend> <%= @game.name %> <small class="pull-right"> Dungeon Master: <%= @game.dungeon_master.name %></small> </legend>
         <div class="row">
           <div class="col-12">
