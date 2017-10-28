@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171017200037) do
+ActiveRecord::Schema.define(version: 20171027225243) do
 
   create_table "achievements", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.bigint "character_id"
@@ -28,7 +28,6 @@ ActiveRecord::Schema.define(version: 20171017200037) do
     t.text "content"
     t.boolean "visible_by_players"
     t.string "dm_annotation"
-    t.string "text"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["category_id"], name: "index_campaign_notes_on_category_id"

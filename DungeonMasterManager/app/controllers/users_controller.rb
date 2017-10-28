@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :authenticate
+  before_action :authenticate, except: [:new, :create]
 
   #TODO: develop user creation and deletion logic
 
@@ -7,12 +7,13 @@ class UsersController < ApplicationController
   end
 
   def new
-  end
-
-  def edit
+     @user = User.new
   end
 
   def create
+  end
+
+  def edit
   end
 
   def update

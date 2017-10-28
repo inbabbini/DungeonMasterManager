@@ -9,13 +9,13 @@
 # --------------- Create Users ------------------
 
 user1 = User.create(name: 'Iron', uid: '115235670175543925724', provider: 'google_oauth2')
-user2 = User.create(name: 'Ponch')
-user3 = User.create(name: 'Pain')
-user4 = User.create(name: 'Richard')
-user5 = User.create(name: 'Manzer')
-user6 = User.create(name: 'Gunn')
-user7 = User.create(name: 'Lau')
-user8 = User.create(name: 'Diego')
+user2 = User.create(name: 'Ponch', email: 'ponch@dmm.com')
+user3 = User.create(name: 'Pain', email: 'pain@dmm.com')
+user4 = User.create(name: 'Richard', email: 'richard@dmm.com')
+user5 = User.create(name: 'Manzer', email: 'manzer@dmm.com')
+user6 = User.create(name: 'Gunn', email: 'gunn@dmm.com')
+user7 = User.create(name: 'Lau', email: 'lau@dmm.com')
+user8 = User.create(name: 'Diego', email: 'diego@dmm.com')
 
 # --------------- Create Games ------------------
 
