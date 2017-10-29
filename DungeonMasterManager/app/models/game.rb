@@ -7,7 +7,7 @@ class Game < ApplicationRecord
   has_many :campaign_notes
 
   #Class Validations
-  validates :dungeon_master, :name, presence: true
+  validates :name, presence: true
   validates :name, length: { in: 1..255 }
 
   #Instance Methods

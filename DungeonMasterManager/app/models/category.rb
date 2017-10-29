@@ -4,7 +4,7 @@ class Category < ApplicationRecord
   has_many :campaign_notes
 
   #validations
-  validates :name, :game, presence: true
+  validates :name, presence: true
   validates :name, length: { in: 1..255 }
 
   #Scopes

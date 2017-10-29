@@ -14,8 +14,8 @@ class Character < ApplicationRecord
 	has_many :achievements
 
   #Validations
-  validates :game, :user, :name, :race, :inventory, presence: true
-  validates :name, :race, :description, length: { in: 1..255 }
+  validates :name, :race, presence: true
+  validates :name, :race, length: { in: 1..255 }
 
   #Instance methods
   def add_inventory

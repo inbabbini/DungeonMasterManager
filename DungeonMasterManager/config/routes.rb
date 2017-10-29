@@ -5,23 +5,21 @@ Rails.application.routes.draw do
 
   #Home routes
   get 'home', to: 'home#show', as: 'home'
-  get 'signin', to: 'home#signin', as: 'signin'
 
-  #Auth/sessions routes
+  #Auth/#sessions routes
+  get 'login', to: 'sessions#new', as: 'login_form'
+  post 'login', to: 'sessions#create', as: 'login'
   get 'logout', to: 'sessions#destroy', as: 'logout'
+
+  #social login routes
   get 'google_login', to: redirect('/auth/google_oauth2'), as: 'google_login'
   get 'auth/:provider/callback', to: 'sessions#create'
   get 'auth/failure', to: redirect('/')
 
-  #users routes
-  get 'myprofile', to: 'users#show', as: 'myprofile'
-  get 'users/:id/edit', to: 'users#edit', as: 'edit_user'
-  patch 'users/:id', to: 'users#update', as: 'update_user'
-  delete 'users', to: 'user#destroy', as: 'delete_user'
-
   #Special routes
   get 'games/:game_id/campaign_notes/:id/change_visibility', to: 'campaign_notes#change_visibility', as: 'change_game_campaign_note_visibility'
 
+  resources :users
   resources :games do
     resources :characters do
       resources :skills

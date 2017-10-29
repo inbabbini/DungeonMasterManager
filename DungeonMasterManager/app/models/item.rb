@@ -4,7 +4,7 @@ class Item < ApplicationRecord
 
   #Validations
   validates :name, :quantity, presence: true
-  validates :name, :description, length: { in: 1..255 }
+  validates :name, length: { in: 1..255 }
   validates :quantity, numericality: { only_integer: true }
-  
+
 end

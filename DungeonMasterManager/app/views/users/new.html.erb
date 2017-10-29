@@ -1,0 +1,8 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <%= form_with(model: @user, method: 'post', class: 'form-horizontal') do |form| %>
+      <%= render 'form_errors', user: @user %>
+      <%= render 'form_fields', form: form %>
+    <% end %>
+  </div>
+</div>

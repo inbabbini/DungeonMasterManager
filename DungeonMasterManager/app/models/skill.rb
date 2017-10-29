@@ -3,6 +3,6 @@ class Skill < ApplicationRecord
   belongs_to :character
 
   #Validations
-  validates :character, :name, presence: true
-  validates :name, :description, length: { in: 1..255 }
+  validates :name, presence: true
+  validates :name, length: { in: 1..255 }
 end

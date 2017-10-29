@@ -3,6 +3,6 @@ class Inventory < ApplicationRecord
   has_many :items
 
   #Validations
-  validates :character, :capacity, presence: true
+  validates :capacity, presence: true
   validates :capacity, numericality: { only_integer: true }
 end

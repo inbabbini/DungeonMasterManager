@@ -3,6 +3,6 @@ class Achievement < ApplicationRecord
 
   #Validations
   validates :name, presence: true
-  validates :name, :description, length: { minimum: 1, maximum: 255 }
-  
+  validates :name, length: { minimum: 1, maximum: 255 }
+
 end

@@ -1,0 +1,15 @@
+<% if flash[:success] %>
+  <%= render 'shared/notifications/successes', message: flash[:success] %>
+<% end %>
+
+<% if flash[:notice] %>
+  <%= render 'shared/notifications/notices', message: flash[:notice] %>
+<% end %>
+
+<% if flash[:warning] %>
+  <%= render 'shared/notifications/warnings', message: flash[:warning] %>
+<% end %>
+
+<% if flash[:error] %>
+  <%= render 'shared/notifications/errors', message: flash[:error] %>
+<% end %>

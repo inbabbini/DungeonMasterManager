@@ -8,14 +8,14 @@
 
 # --------------- Create Users ------------------
 
-user1 = User.create(name: 'Iron', uid: '115235670175543925724', provider: 'google_oauth2')
-user2 = User.create(name: 'Ponch', email: 'ponch@dmm.com')
-user3 = User.create(name: 'Pain', email: 'pain@dmm.com')
-user4 = User.create(name: 'Richard', email: 'richard@dmm.com')
-user5 = User.create(name: 'Manzer', email: 'manzer@dmm.com')
-user6 = User.create(name: 'Gunn', email: 'gunn@dmm.com')
-user7 = User.create(name: 'Lau', email: 'lau@dmm.com')
-user8 = User.create(name: 'Diego', email: 'diego@dmm.com')
+user1 = User.create(name: 'Iron', uid: '115235670175543925724', provider: 'google_oauth2', email: 'ignababbini@gmail.com', password: 'ironiron')
+user2 = User.create(name: 'Ponch', email: 'ponch@dmm.com', password: 'ponchponch')
+user3 = User.create(name: 'Pain', email: 'pain@dmm.com', password: 'painpain')
+user4 = User.create(name: 'Richard', email: 'richard@dmm.com', password: 'richardrichard')
+user5 = User.create(name: 'Manzer', email: 'manzer@dmm.com', password: 'manzermanzer')
+user6 = User.create(name: 'Gunn', email: 'gunn@dmm.com', password: 'gunngunn')
+user7 = User.create(name: 'Lau', email: 'lau@dmm.com', password: 'laulau')
+user8 = User.create(name: 'Diego', email: 'diego@dmm.com', password: 'diegodiego')
 
 # --------------- Create Games ------------------
 
@@ -48,10 +48,10 @@ consumables = ['Minor healing potion', 'Healing Potion', 'Arrow', 'Bolt', 'Scrol
 
 characters.each do | c |
   rand(0..3).times do
-    c.inventory.items << Item.new(name: weapons[rand(0..(weapons.size - 1))] + " " + weapon_properties[rand(0..(weapon_properties.size - 1))])
+    c.inventory.items << Item.new(name: weapons[rand(0..(weapons.size - 1))] + " " + weapon_properties[rand(0..(weapon_properties.size - 1))], quantity: 1)
   end
   rand(0..3).times do
-    c.inventory.items << Item.new(name: consumables[rand(0..(consumables.size - 1))])
+    c.inventory.items << Item.new(name: consumables[rand(0..(consumables.size - 1))], quantity: 1)
   end
 end
 

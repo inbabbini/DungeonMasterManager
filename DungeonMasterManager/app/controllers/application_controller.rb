@@ -13,7 +13,6 @@ class ApplicationController < ActionController::Base
   end
 
   def user_signed_in?
-  	# converts current_user to a boolean by negating the negation
   	!!current_user
   end
 
@@ -28,5 +27,5 @@ class ApplicationController < ActionController::Base
   def set_character
     @character = Character.find(params[:character_id])
   end
-  
+
 end

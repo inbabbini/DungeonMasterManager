@@ -3,7 +3,7 @@ class Note < ApplicationRecord
   belongs_to :character
 
   #Validations
-  validates :character, :title, :content, presence: true
+  validates :title, :content, presence: true
   validates :title, length: { in: 1..255 }
-  
+
 end
