@@ -18,6 +18,7 @@
         <%= f.submit "Login", class: 'btn btn-dark pull-right' %>
       </fieldset>
     <% end %>
+    <p> New? <%= link_to 'Register!', register_path %> </p>
     <legend>Social Login</legend>
     <%= link_to "Login with Google", 'google_login', class:'btn btn-danger btn-block text-light' %>
   </div>

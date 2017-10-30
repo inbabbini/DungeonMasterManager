@@ -7,10 +7,26 @@ class Game < ApplicationRecord
   has_many :campaign_notes
 
   #Class Validations
-  validates :name, presence: true
-  validates :name, length: { in: 1..255 }
+  validates :name,
+    presence: true,
+    length: { in: 1..255 }
+
+  validates :secret_key,
+    presence: true,
+    uniqueness: true,
+    length: { in: 10..255 }
 
   #Instance Methods
+  def add_player(user)
+    if self.is_related_to? user
+      return false, 'You already belong to this game.'
+    end
+
+    self.players << user
+    self.save
+    return true, 'You just joined %s. Welcome aboard!' % [self.name]
+  end
+
   def is_related_to?(user)
     return self.dungeon_master == user || user.in?(self.players)
   end

@@ -1,7 +1,7 @@
 class GamesController < ApplicationController
   before_action :authenticate
   before_action :set_game, only: [:show, :edit, :update, :destroy]
-  before_action :check_visibility_auth, except: [:index, :new, :create]
+  before_action :check_visibility_auth, except: [:index, :new, :create, :join, :register]
   before_action :check_edition_auth, only: [:edit, :update, :destroy]
 
   # GET /games
@@ -70,6 +70,31 @@ class GamesController < ApplicationController
     respond_to do |format|
       format.html { redirect_to games_url, notice: 'Game was successfully destroyed.' }
       format.json { head :no_content }
+    end
+  end
+
+  def join
+  end
+
+  def register
+    @game = Game.where(secret_key: game_params[:secret_key]).first
+    if !@game.nil?
+      @registered, @message = @game.add_player current_user
+    else
+      @registered = false
+      @message = 'The key provided does not belong to any game'
+    end
+
+    respond_to do |format|
+      if @registered
+        flash[:success] = @message
+        format.html { redirect_to game_path(@game) }
+        format.json { render :show, status: :ok, location: @game }
+      else
+        flash[:error] = @message
+        format.html { redirect_to games_join_path }
+        format.json { head :no_content }
+      end
     end
   end
 

@@ -3,7 +3,16 @@
     <%= link_to 'Back to Games', games_path, class: 'btn btn-block btn-dark text-light' %>
   </div>
   <div class="col-sm-6 col-xs-12">
-        <legend> <%= @game.name %> <small class="pull-right"> Dungeon Master: <%= @game.dungeon_master.name %></small> </legend>
+        <legend>
+          <%= @game.name %>
+          <small class="pull-right">
+            <% if user_is_dm? %>
+              Secret key: <%= @game.secret_key %>
+            <% else %>
+               Dungeon Master: <%= @game.dungeon_master.name %>
+            <% end %>
+          </small>
+        </legend>
         <div class="row">
           <div class="col-12">
             <legend> Characters </legend>

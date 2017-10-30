@@ -18,6 +18,8 @@ Rails.application.routes.draw do
 
   #Special routes
   get 'games/:game_id/campaign_notes/:id/change_visibility', to: 'campaign_notes#change_visibility', as: 'change_game_campaign_note_visibility'
+  get 'games/join', to: 'games#join', as: 'games_join'
+  post 'games/register', to: 'games#register', as: 'games_register'
 
   resources :users
   resources :games do

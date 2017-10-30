@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :authenticate, except: [:new, :create]
+  before_action :set_user, only: [:show, :edit, :destroy]
 
   #TODO: develop user creation and deletion logic
 
@@ -30,15 +31,36 @@ class UsersController < ApplicationController
   end
 
   def update
+    respond_to do |format|
+      if @user.update(user_params)
+        flash[:success] = 'User information successfully updated!'
+        format.html { redirect_to user_path(@user) }
+        format.json { render :show, status: :ok, location: @user }
+      else
+        format.html { render :edit }
+        format.json { render json: @user.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
   def destroy
+    @user.destroy
+    respond_to do |format|
+      flash[:success] = 'You successfully deleted your user. Farewell!'
+      format.html { redirect_to root_path }
+      format.json { head :no_content }
+    end
   end
 
   private
 
   def user_params
     params.require(:user).permit(:name, :email, :password, :password_confirmation)
+  end
+
+  def set_user
+    @user = current_user
+    @user.picture = 'Profiles/profile_default.jpg' if @user.picture.nil?
   end
 
 end
