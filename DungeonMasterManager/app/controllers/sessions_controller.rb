@@ -1,4 +1,5 @@
 class SessionsController < ApplicationController
+  before_action :check_already_logged, only: [:new, :create]
 
   def new
   end
@@ -13,14 +14,14 @@ class SessionsController < ApplicationController
     if @user.nil?
       redirect_to login_path, notice: 'Incorrect user/password combination provided'
     else
-	   session[:user_id] = @user.id
+	   login(@user)
 	   redirect_to root_path, notice: 'Greetings, ' + current_user.name + '!'
     end
   end
 
   def destroy
     @user = current_user
-  	session[:user_id] = nil
+  	logout
   	redirect_to root_path, notice: 'Farewell, ' + @user.name
   end
 

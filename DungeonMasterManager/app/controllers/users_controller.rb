@@ -1,8 +1,7 @@
 class UsersController < ApplicationController
+  before_action :check_already_logged, only: [:new, :create]
   before_action :authenticate, except: [:new, :create]
-  before_action :set_user, only: [:show, :edit, :destroy]
-
-  #TODO: develop user creation and deletion logic
+  before_action :set_user, only: [:show, :edit, :update, :destroy]
 
   def show
   end
@@ -46,6 +45,7 @@ class UsersController < ApplicationController
   def destroy
     @user.destroy
     respond_to do |format|
+      logout
       flash[:success] = 'You successfully deleted your user. Farewell!'
       format.html { redirect_to root_path }
       format.json { head :no_content }

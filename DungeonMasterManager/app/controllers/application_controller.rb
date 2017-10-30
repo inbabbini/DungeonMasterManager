@@ -4,6 +4,21 @@ class ApplicationController < ActionController::Base
   helper_method :user_is_dm?
   helper_method :user_signed_in?
 
+  def logout
+    session[:user_id] = nil
+  end
+
+  def login(user)
+    session[:user_id] = user.id
+  end
+
+  def check_already_logged
+    if user_signed_in?
+      flash[:warning] = 'You are already signed in'
+      redirect_to root_path
+    end
+  end
+
   def authenticate
   	redirect_to :login unless user_signed_in?
   end

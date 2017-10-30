@@ -2,7 +2,7 @@
   <div class="col-4">
     <%= form_for(:session, url: login_path, method: 'post', class: 'form-horizontal') do |f| %>
       <fieldset>
-        <legend>Login</legend>
+        <legend>Login <p class="h5 pull-right"> New? <%= link_to 'Register!', new_user_path %> </p></legend>
         <div class="form-group row">
           <%= f.label :email, class: 'col-sm-2 control-label' %>
           <div class="col-sm-10">
@@ -18,7 +18,6 @@
         <%= f.submit "Login", class: 'btn btn-dark pull-right' %>
       </fieldset>
     <% end %>
-    <p> New? <%= link_to 'Register!', register_path %> </p>
     <legend>Social Login</legend>
     <%= link_to "Login with Google", 'google_login', class:'btn btn-danger btn-block text-light' %>
   </div>
