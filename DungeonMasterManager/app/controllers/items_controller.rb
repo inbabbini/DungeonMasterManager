@@ -2,6 +2,7 @@ class ItemsController < ApplicationController
   before_action :set_item, only: [:show, :edit, :update, :destroy]
   before_action :set_game
   before_action :set_character
+  before_action :user_owns_character_or_game?
 
   # GET /items
   # GET /items.json
@@ -31,9 +32,10 @@ class ItemsController < ApplicationController
 
     respond_to do |format|
       if @item.save
-        format.html { redirect_to game_character_path(@game, @character), notice: 'Item was successfully created.' }
+        format.html { redirect_to game_character_path(@game, @character), flash: { success: 'Item was successfully created!' } }
         format.json { render :show, status: :created, location: @item }
       else
+        flash[:error] = 'Hmm, there seems to be some errors with your information...'
         format.html { render :new }
         format.json { render json: @item.errors, status: :unprocessable_entity }
       end
@@ -45,9 +47,10 @@ class ItemsController < ApplicationController
   def update
     respond_to do |format|
       if @item.update(item_params)
-        format.html { redirect_to game_character_path(@game, @character), notice: 'Item was successfully updated.' }
+        format.html { redirect_to game_character_path(@game, @character), flash: { success: 'Item was successfully update!' } }
         format.json { render :show, status: :ok, location: @item }
       else
+        flash[:error] = 'Hmm, there seems to be some errors with your information...'
         format.html { render :edit }
         format.json { render json: @item.errors, status: :unprocessable_entity }
       end
@@ -59,7 +62,7 @@ class ItemsController < ApplicationController
   def destroy
     @item.destroy
     respond_to do |format|
-      format.html { redirect_to game_character_path(@game, @character), notice: 'Item was successfully destroyed.' }
+      format.html { redirect_to game_character_path(@game, @character), flash: { success: 'Item was successfully deleted!' } }
       format.json { head :no_content }
     end
   end

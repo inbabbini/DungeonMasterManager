@@ -26,4 +26,8 @@ class Character < ApplicationRecord
     self.inventory = Inventory.new(character: self, capacity: 30)
   end
 
+  def is_owned_by?(user)
+    self.user == user
+  end
+
 end

@@ -69,7 +69,7 @@ class User < ApplicationRecord
     self.password = nil
   end
 
-  def is_owner?(resource)
+  def owns?(resource)
     resource.is_owned_by? self
   end
 

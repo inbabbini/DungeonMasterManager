@@ -1,18 +1,17 @@
 class CampaignNotesController < ApplicationController
+  before_action :authenticate
+  before_action :set_game
+  before_action :user_belongs_to_game?
+  before_action :user_owns_game?, only: [:new, :edit, :create, :update, :destroy, :change_visibility]
   before_action :set_campaign_note, only: [:show, :edit, :update, :destroy, :change_visibility]
-  before_action :set_game, except: [:udapte, :destroy]
 
   # GET /campaign_notes
   # GET /campaign_notes.json
   def index
     if user_is_dm?
       @categories = Category.includes(:campaign_notes).for_game(@game).order("name DESC")
-      # @categories = Category.includes(:campaign_notes).for_game(@game)
-      # @campaign_notes = CampaignNote.includes(:category).where(game_id: params[:game_id])
     else
       @categories = Category.includes(:campaign_notes).where(campaign_notes: {visible_by_players: true}).for_game(@game).order("name DESC")
-      # @categories = @campaign_notes.map {|cp| cp.category }.uniq
-      # @campaign_notes = CampaignNote.includes(:category).where(game_id: params[:game_id], visible_by_players: true)
     end
   end
 
@@ -39,9 +38,10 @@ class CampaignNotesController < ApplicationController
 
     respond_to do |format|
       if @campaign_note.save
-        format.html { redirect_to game_campaign_note_path(@game, @campaign_note), notice: 'Campaign note was successfully created.' }
+        format.html { redirect_to game_campaign_note_path(@game, @campaign_note), flash: { success: 'Campaign Note was successfully created!' } }
         format.json { render :show, status: :created, location: @campaign_note }
       else
+        flash[:error] = 'Hmm, there seems to be some errors with your information...'
         format.html { render :new }
         format.json { render json: @campaign_note.errors, status: :unprocessable_entity }
       end
@@ -53,9 +53,10 @@ class CampaignNotesController < ApplicationController
 
     respond_to do |format|
       if @campaign_note.save
-        format.html { redirect_to game_campaign_note_path(@game, @campaign_note), notice: 'Campaign note visibility successfully inverted.' }
+        format.html { redirect_to game_campaign_note_path(@game, @campaign_note), flash: { success: 'Campaign Note visibility successfully inverted!' } }
         format.json { render :show, status: :ok, location: @campaign_note }
       else
+        flash[:error] = 'Hmm, there seems to be some problem with this note visibility...'
         format.html { redirect_to @campaign_note }
         format.json { render json: @campaign_note.errors, status: :unprocessable_entity }
       end
@@ -67,9 +68,10 @@ class CampaignNotesController < ApplicationController
   def update
     respond_to do |format|
       if @campaign_note.update(campaign_note_params)
-        format.html { redirect_to game_campaign_note_path(@game, @campaign_note), notice: 'Campaign note was successfully updated.' }
+        format.html { redirect_to game_campaign_note_path(@game, @campaign_note), flash: { success: 'Campaign Note was successfully updated!' } }
         format.json { render :show, status: :ok, location: @campaign_note }
       else
+        flash[:error] = 'Hmm, there seems to be some errors with your information...'
         format.html { render :edit }
         format.json { render json: @campaign_note.errors, status: :unprocessable_entity }
       end
@@ -81,7 +83,7 @@ class CampaignNotesController < ApplicationController
   def destroy
     @campaign_note.destroy
     respond_to do |format|
-      format.html { redirect_to game_campaign_notes_url, notice: 'Campaign note was successfully destroyed.' }
+      format.html { redirect_to game_campaign_notes_url, flash: { success: 'Campaign Note was successfully destroy!' } }
       format.json { head :no_content }
     end
   end

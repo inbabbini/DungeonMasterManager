@@ -1,8 +1,6 @@
 class GamesController < ApplicationController
   before_action :authenticate
   before_action :set_game, only: [:show, :edit, :update, :destroy]
-  before_action :check_visibility_auth, except: [:index, :new, :create, :join, :register]
-  before_action :check_edition_auth, only: [:edit, :update, :destroy]
 
   # GET /games
   # GET /games.json
@@ -40,9 +38,10 @@ class GamesController < ApplicationController
 
     respond_to do |format|
       if @game.save
-        format.html { redirect_to @game, notice: 'Game was successfully created.' }
+        format.html { redirect_to @game, flash: { success: 'Game was successfully created!' } }
         format.json { render :show, status: :created, location: @game }
       else
+        flash[:error] = 'Hmm, there seems to be some errors with your information...'
         format.html { render :new }
         format.json { render json: @game.errors, status: :unprocessable_entity }
       end
@@ -54,9 +53,10 @@ class GamesController < ApplicationController
   def update
     respond_to do |format|
       if @game.update(game_params)
-        format.html { redirect_to @game, notice: 'Game was successfully updated.' }
+        format.html { redirect_to @game, flash: { success: 'Game was successfully updated!' } }
         format.json { render :show, status: :ok, location: @game }
       else
+        flash[:error] = 'Hmm, there seems to be some errors with your information...'
         format.html { render :edit }
         format.json { render json: @game.errors, status: :unprocessable_entity }
       end
@@ -68,7 +68,7 @@ class GamesController < ApplicationController
   def destroy
     @game.destroy
     respond_to do |format|
-      format.html { redirect_to games_url, notice: 'Game was successfully destroyed.' }
+      format.html { redirect_to games_url, flash: { success: 'Game was successfully deleted!' } }
       format.json { head :no_content }
     end
   end
@@ -87,12 +87,10 @@ class GamesController < ApplicationController
 
     respond_to do |format|
       if @registered
-        flash[:success] = @message
-        format.html { redirect_to game_path(@game) }
+        format.html { redirect_to game_path(@game), flash: { success: @message } }
         format.json { render :show, status: :ok, location: @game }
       else
-        flash[:error] = @message
-        format.html { redirect_to games_join_path }
+        format.html { redirect_to games_join_path, flash: { error: @message } }
         format.json { head :no_content }
       end
     end
@@ -109,15 +107,4 @@ class GamesController < ApplicationController
       params.require(:game).permit(:secret_key, :name)
     end
 
-    def check_visibility_auth
-      redirect_back fallback_location: games_url, notice: "Non authorized action" unless current_user.is_dm_or_player? @game
-    end
-
-    def check_edition_auth
-      redirect_back fallback_location: games_url, notice: "Non authorized action" unless current_user.is_owner? @game
-    end
-
-    def user_is_dm?
-      return current_user == @game.dungeon_master
-    end
 end

@@ -15,8 +15,7 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
-        flash[:success] = 'Wellcome, %s! You have successfully registered.' % [@user.name]
-        format.html { redirect_to login_path }
+        format.html { redirect_to login_path, flash: { success: 'Wellcome, %s! You have successfully registered.' % [@user.name] } }
         format.json { render :show, status: :created, location: @user }
       else
         flash.now[:error] = 'Hmm... There seems to be some errors.'
@@ -32,10 +31,11 @@ class UsersController < ApplicationController
   def update
     respond_to do |format|
       if @user.update(user_params)
-        flash[:success] = 'User information successfully updated!'
-        format.html { redirect_to user_path(@user) }
+        flash[:success] =
+        format.html { redirect_to user_path(@user), flash: { success: 'User information successfully updated!' } }
         format.json { render :show, status: :ok, location: @user }
       else
+        flash.now[:error] = 'Hmm... There seems to be some errors.'
         format.html { render :edit }
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end
@@ -46,8 +46,7 @@ class UsersController < ApplicationController
     @user.destroy
     respond_to do |format|
       logout
-      flash[:success] = 'You successfully deleted your user. Farewell!'
-      format.html { redirect_to root_path }
+      format.html { redirect_to root_path, flash: { success: 'You successfully deleted your user. Farewell!' } }
       format.json { head :no_content }
     end
   end

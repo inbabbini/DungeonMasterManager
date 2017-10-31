@@ -1,7 +1,9 @@
 class SkillsController < ApplicationController
-  before_action :set_skill, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate
   before_action :set_game
   before_action :set_character
+  before_action :user_owns_character_or_game?
+  before_action :set_skill, only: [:show, :edit, :update, :destroy]
 
   # GET /skills
   # GET /skills.json
@@ -31,9 +33,10 @@ class SkillsController < ApplicationController
 
     respond_to do |format|
       if @skill.save
-        format.html { redirect_to game_character_path(@game, @character), notice: 'Skill was successfully created.' }
+        format.html { redirect_to game_character_path(@game, @character), flash: { success: 'Skill was successfully created!' } }
         format.json { render :show, status: :created, location: @skill }
       else
+        flash[:error] = 'Hmm, there seems to be some errors with your information...'
         format.html { render :new }
         format.json { render json: @skill.errors, status: :unprocessable_entity }
       end
@@ -45,9 +48,10 @@ class SkillsController < ApplicationController
   def update
     respond_to do |format|
       if @skill.update(skill_params)
-        format.html { redirect_to game_character_path(@game, @character), notice: 'Skill was successfully updated.' }
+        format.html { redirect_to game_character_path(@game, @character), flash: { success: 'Skill was successfully updated!' } }
         format.json { render :show, status: :ok, location: @skill }
       else
+        flash[:error] = 'Hmm, there seems to be some errors with your information...'
         format.html { render :edit }
         format.json { render json: @skill.errors, status: :unprocessable_entity }
       end
@@ -59,7 +63,7 @@ class SkillsController < ApplicationController
   def destroy
     @skill.destroy
     respond_to do |format|
-      format.html { redirect_to skills_url, notice: 'Skill was successfully destroyed.' }
+      format.html { redirect_to skills_url, flash: { success: 'Skill was successfully destroy!' } }
       format.json { head :no_content }
     end
   end

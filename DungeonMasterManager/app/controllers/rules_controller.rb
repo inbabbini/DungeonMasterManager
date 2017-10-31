@@ -1,4 +1,7 @@
 class RulesController < ApplicationController
+  before_action :authenticate
+  before_action :set_game
+  before_action :user_belongs_to_game?
   before_action :set_rule, only: [:show, :edit, :update, :destroy]
 
   # GET /rules
@@ -28,9 +31,10 @@ class RulesController < ApplicationController
 
     respond_to do |format|
       if @rule.save
-        format.html { redirect_to @rule, notice: 'Rule was successfully created.' }
+        format.html { redirect_to @rule, flash: { success: 'Rule was successfully created!' } }
         format.json { render :show, status: :created, location: @rule }
       else
+        flash[:error] = 'Hmm, there seems to be some errors with your information...'
         format.html { render :new }
         format.json { render json: @rule.errors, status: :unprocessable_entity }
       end
@@ -42,9 +46,10 @@ class RulesController < ApplicationController
   def update
     respond_to do |format|
       if @rule.update(rule_params)
-        format.html { redirect_to @rule, notice: 'Rule was successfully updated.' }
+        format.html { redirect_to @rule, flash: { success: 'Rule was successfully updated!' } }
         format.json { render :show, status: :ok, location: @rule }
       else
+        flash[:error] = 'Hmm, there seems to be some errors with your information...'
         format.html { render :edit }
         format.json { render json: @rule.errors, status: :unprocessable_entity }
       end
@@ -56,7 +61,7 @@ class RulesController < ApplicationController
   def destroy
     @rule.destroy
     respond_to do |format|
-      format.html { redirect_to rules_url, notice: 'Rule was successfully destroyed.' }
+      format.html { redirect_to rules_url, flash: { success: 'Rule was successfully deleted!' } }
       format.json { head :no_content }
     end
   end

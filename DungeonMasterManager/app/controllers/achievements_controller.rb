@@ -1,12 +1,14 @@
 class AchievementsController < ApplicationController
-  before_action :set_achievement, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate
   before_action :set_game
   before_action :set_character
+  before_action :user_owns_character_or_game?
+  before_action :set_achievement, only: [:show, :edit, :update, :destroy]
 
   # GET /achievements
   # GET /achievements.json
   def index
-    @achievements = Achievement.all
+    @achievements = Achievement.where(game: @game, character: @character)
   end
 
   # GET /achievements/1
@@ -31,9 +33,10 @@ class AchievementsController < ApplicationController
 
     respond_to do |format|
       if @achievement.save
-        format.html { redirect_to game_character_path(@game, @character), notice: 'Achievement was successfully created.' }
+        format.html { redirect_to game_character_path(@game, @character), flash: { success: 'Achievement successfully created!' } }
         format.json { render :show, status: :created, location: @achievement }
       else
+        flash.now[:error] = 'Hmm, there seems to be some problems with your information...'
         format.html { render :new }
         format.json { render json: @achievement.errors, status: :unprocessable_entity }
       end
@@ -45,9 +48,10 @@ class AchievementsController < ApplicationController
   def update
     respond_to do |format|
       if @achievement.update(achievement_params)
-        format.html { redirect_to game_character_path(@game, @character), notice: 'Achievement was successfully updated.' }
+        format.html { redirect_to game_character_path(@game, @character), flash: { success: 'Achievement was successfully updated!' } }
         format.json { render :show, status: :ok, location: @achievement }
       else
+        flash[:error] = 'Hmm, there seems to be some problems with your information...'
         format.html { render :edit }
         format.json { render json: @achievement.errors, status: :unprocessable_entity }
       end
@@ -59,7 +63,7 @@ class AchievementsController < ApplicationController
   def destroy
     @achievement.destroy
     respond_to do |format|
-      format.html { redirect_to game_character_path(@game, @character), notice: 'Achievement was successfully destroyed.' }
+      format.html { redirect_to game_character_path(@game, @character), flash: { success: 'Achievement was successfully destroyed!' } }
       format.json { head :no_content }
     end
   end

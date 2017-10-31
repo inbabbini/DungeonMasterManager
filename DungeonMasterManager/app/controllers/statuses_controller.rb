@@ -1,7 +1,9 @@
 class StatusesController < ApplicationController
-  before_action :set_status, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate
   before_action :set_game
   before_action :set_character
+  before_action :user_owns_character_or_game?
+  before_action :set_status, only: [:show, :edit, :update, :destroy]
 
   # GET /characters
   # GET /characters.json
@@ -31,9 +33,10 @@ class StatusesController < ApplicationController
 
     respond_to do |format|
       if @status.save
-        format.html { redirect_to game_character_path(@game, @character), notice: 'Status was successfully created.' }
+        format.html { redirect_to game_character_path(@game, @character), flash: { success: 'Status was successfully created!' } }
         format.json { render :show, status: :created, location: @status }
       else
+        flash[:error] = 'Hmm, there seems to be some errors with your information...'
         format.html { render :new }
         format.json { render json: @status.errors, status: :unprocessable_entity }
       end
@@ -45,9 +48,10 @@ class StatusesController < ApplicationController
   def update
     respond_to do |format|
       if @status.update(status_params)
-        format.html { redirect_to game_character_path(@game, @character), notice: 'Status was successfully updated.' }
+        format.html { redirect_to game_character_path(@game, @character), flash: { success: 'Status was successfully updated!' } }
         format.json { render :show, status: :ok, location: @status }
       else
+        flash[:error] = 'Hmm, there seems to be some errors with your information...'
         format.html { render :edit }
         format.json { render json: @status.errors, status: :unprocessable_entity }
       end
@@ -59,7 +63,7 @@ class StatusesController < ApplicationController
   def destroy
     @status.destroy
     respond_to do |format|
-      format.html { redirect_to game_character_path(@game, @character), notice: 'Status was successfully destroyed.' }
+      format.html { redirect_to game_character_path(@game, @character), flash: { success: 'Status was successfully deleted!' } }
       format.json { head :no_content }
     end
   end

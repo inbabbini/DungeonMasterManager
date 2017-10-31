@@ -28,12 +28,28 @@ class ApplicationController < ActionController::Base
   end
 
   def user_signed_in?
-  	!!current_user
+    !!current_user
   end
 
   def user_is_dm?
-    return current_user == @game.dungeon_master
+    current_user == @game.dungeon_master
   end
+
+  #Custom validation callbacks
+
+  def user_owns_character_or_game?
+    redirect_back fallback_location: games_url, flash: { warning: 'You are not allowed to do that!' } unless current_user.owns?(@character) || current_user.owns?(@game)
+  end
+
+  def user_owns_game?
+    redirect_back fallback_location: games_url, flash: { warning: 'You are not allowed to do that!' } unless current_user.owns?(@game)
+  end
+
+  def user_belongs_to_game?
+    redirect_back fallback_location: games_url, flash: { warning: 'You are not allowed to do that!' } unless current_user.is_dm_or_player?(@game)
+  end
+
+  #Shared initializers
 
   def set_game
     @game = Game.find(params[:game_id])

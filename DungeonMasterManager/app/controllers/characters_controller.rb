@@ -1,6 +1,9 @@
 class CharactersController < ApplicationController
-  before_action :set_character, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate
   before_action :set_game
+  before_action :user_owns_character_or_game?, only: [:show, :edit, :update, :destroy]
+  before_action :user_belongs_to_game?, only: [:new, :create]
+  before_action :set_character, only: [:show, :edit, :update, :destroy]
 
   # GET /characters
   # GET /characters.json
@@ -32,9 +35,10 @@ class CharactersController < ApplicationController
 
     respond_to do |format|
       if @character.save
-        format.html { redirect_to game_character_path(@game, @character), notice: 'Character was successfully created.' }
+        format.html { redirect_to game_character_path(@game, @character), flash: { success: 'Character was successfully created!' } }
         format.json { render :show, status: :created, location: @character }
       else
+        flash[:error] = 'Hmm, there seems to be some errors with your information...'
         format.html { render :new }
         format.json { render json: @character.errors, status: :unprocessable_entity }
       end
@@ -46,9 +50,10 @@ class CharactersController < ApplicationController
   def update
     respond_to do |format|
       if @character.update(character_params)
-        format.html { redirect_to game_character_path(@game, @character), notice: 'Character was successfully updated.' }
+        format.html { redirect_to game_character_path(@game, @character), flash: { success: 'Character was successfully updated!' } }
         format.json { render :show, status: :ok, location: @character }
       else
+        flash[:error] = 'Hmm, there seems to be some errors with your information...'
         format.html { render :edit }
         format.json { render json: @character.errors, status: :unprocessable_entity }
       end
@@ -60,7 +65,7 @@ class CharactersController < ApplicationController
   def destroy
     @character.destroy
     respond_to do |format|
-      format.html { redirect_to game_path(@game), notice: 'Character was successfully destroyed.' }
+      format.html { redirect_to game_path(@game), flash: { success: 'Character was successfully deleted!' } }
       format.json { head :no_content }
     end
   end

@@ -1,7 +1,9 @@
 class NotesController < ApplicationController
+  before_action :authenticate
   before_action :set_note, only: [:show, :edit, :update, :destroy]
   before_action :set_game
   before_action :set_character
+  before_action :user_owns_character_or_game?
 
   # GET /notes
   # GET /notes.json
@@ -31,9 +33,10 @@ class NotesController < ApplicationController
 
     respond_to do |format|
       if @note.save
-        format.html { redirect_to game_character_note_path(@game, @character), notice: 'Note was successfully created.' }
+        format.html { redirect_to game_character_note_path(@game, @character), flash: { success: 'Note was successfully created!' } }
         format.json { render :show, status: :created, location: @note }
       else
+        flash[:error] = 'Hmm, there seems to be some errors with your information...'
         format.html { render :new }
         format.json { render json: @note.errors, status: :unprocessable_entity }
       end
@@ -45,9 +48,10 @@ class NotesController < ApplicationController
   def update
     respond_to do |format|
       if @note.update(note_params)
-        format.html { redirect_to game_character_note_path(@game, @character, @note), notice: 'Note was successfully updated.' }
+        format.html { redirect_to game_character_note_path(@game, @character, @note), flash: { success: 'Note was successfully updated!' } }
         format.json { render :show, status: :ok, location: @note }
       else
+        flash[:error] = 'Hmm, there seems to be some errors with your information...'
         format.html { render :edit }
         format.json { render json: @note.errors, status: :unprocessable_entity }
       end
@@ -59,7 +63,7 @@ class NotesController < ApplicationController
   def destroy
     @note.destroy
     respond_to do |format|
-      format.html { redirect_to game_character_path(@game, @character), notice: 'Note was successfully destroyed.' }
+      format.html { redirect_to game_character_path(@game, @character), flash: { success: 'Note was successfully deleted!' } }
       format.json { head :no_content }
     end
   end

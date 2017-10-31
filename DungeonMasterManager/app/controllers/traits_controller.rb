@@ -1,7 +1,10 @@
 class TraitsController < ApplicationController
-  before_action :set_trait, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate
   before_action :set_game
   before_action :set_character
+  before_action :user_owns_character_or_game?
+  before_action :set_trait, only: [:show, :edit, :update, :destroy]
+
 
   # GET /characters
   # GET /characters.json
@@ -31,9 +34,10 @@ class TraitsController < ApplicationController
 
     respond_to do |format|
       if @trait.save
-        format.html { redirect_to game_character_path(@game, @character), notice: 'Trait was successfully created.' }
+        format.html { redirect_to game_character_path(@game, @character), flash: { success: 'Trait was successfully created!' } }
         format.json { render :show, trait: :created, location: @trait }
       else
+        flash[:error] = 'Hmm, there seems to be some errors with your information...'
         format.html { render :new }
         format.json { render json: @trait.errors, trait: :unprocessable_entity }
       end
@@ -45,9 +49,10 @@ class TraitsController < ApplicationController
   def update
     respond_to do |format|
       if @trait.update(trait_params)
-        format.html { redirect_to game_character_path(@game, @character), notice: 'Trait was successfully updated.' }
+        format.html { redirect_to game_character_path(@game, @character), flash: { success: 'Trait was successfully updated!' } }
         format.json { render :show, trait: :ok, location: @trait }
       else
+        flash[:error] = 'Hmm, there seems to be some errors with your information...'
         format.html { render :edit }
         format.json { render json: @trait.errors, trait: :unprocessable_entity }
       end
@@ -59,7 +64,7 @@ class TraitsController < ApplicationController
   def destroy
     @trait.destroy
     respond_to do |format|
-      format.html { redirect_to game_character_path(@game, @character), notice: 'Trait was successfully destroyed.' }
+      format.html { redirect_to game_character_path(@game, @character), flash: { success: 'Trait was successfully destroy!' } }
       format.json { head :no_content }
     end
   end
