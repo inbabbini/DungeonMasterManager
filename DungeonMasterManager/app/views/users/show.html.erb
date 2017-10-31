@@ -2,20 +2,20 @@
 	<div class="col-6">
 		<legend> My Information </legend>
 		<div>
-				<%= image_tag current_user.picture, size: "200x200", class: "img-thumbnail rounded mx-auto d-block" %>
+				<%= image_tag @user.picture.url(:normal), class: "img-thumbnail rounded mx-auto d-block" %>
 		</div>
 		<ul class="list-group">
 			<li class="list-group-item">
-				<b>Name:</b> <%= current_user.name %>
+				<b>Name:</b> <%= @user.name %>
 			</li>
 			<li class="list-group-item">
-				<b>Mail:</b> <%= current_user.email %>
+				<b>Mail:</b> <%= @user.email %>
 			</li>
 			<li class="list-group-item">
-				<b>Registration Date: </b> <%= time_tag(current_user.created_at) %>
+				<b>Registration Date: </b> <%= time_tag(@user.created_at) %>
 			</li>
 		</ul>
-		<%= link_to 'Edit Account', edit_user_path(current_user), class: "btn btn-sm btn-primary text-light" %>
-		<%= link_to 'Delete Account', user_path(current_user), class: "btn btn-sm btn-danger text-light", method: :delete, data: { confirm: 'Are you sure?' } %>
+		<%= link_to 'Edit Account', edit_user_path(@user), class: "btn btn-sm btn-primary text-light" %>
+		<%= link_to 'Delete Account', user_path(@user), class: "btn btn-sm btn-danger text-light", method: :delete, data: { confirm: 'Are you sure?' } %>
 	</div>
 </div>

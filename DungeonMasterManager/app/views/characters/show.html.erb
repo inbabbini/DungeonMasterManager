@@ -8,11 +8,22 @@
       <!-- Column1 -->
       <div class="col-md-4 col-xs-12">
         <legend> <%= @character.name %> </legend>
-        <!-- TODO: Portrait card -->
-        <p>
-          <strong>Race:</strong>
-          <%= @character.race %>
-        </p>
+        <div class="card">
+          <%= image_tag @character.avatar.url(:normal), class: "card-img-top" %>
+        </div>
+        <br>
+        <div class="card mb-3">
+          <div class="card-header bg-dark text-light">Race</div>
+          <div class="card-body">
+            <p class="card-text">
+              <% if @character.race %>
+                <%= @character.race %>
+              <% else %>
+                No race available
+              <% end %>
+            </p>
+          </div>
+        </div>
         <div class="card mb-3">
           <div class="card-header bg-dark text-light">Description</div>
           <div class="card-body">

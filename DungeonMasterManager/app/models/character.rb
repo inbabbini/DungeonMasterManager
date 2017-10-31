@@ -3,6 +3,7 @@ class Character < ApplicationRecord
   before_create :add_inventory
 
   #Associations
+  has_attached_file :avatar, styles: { normal: "300x300" }
   belongs_to :game
 	belongs_to :user
 	has_one :inventory
@@ -16,6 +17,9 @@ class Character < ApplicationRecord
   #Validations
   validates :name, :race, presence: true
   validates :name, :race, length: { in: 1..255 }
+  validates_attachment :avatar,
+  content_type: { content_type: ["image/jpeg", "image/png"] },
+  size: { in: 0..2.megabytes }
 
   #Instance methods
   def add_inventory

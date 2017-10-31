@@ -4,6 +4,7 @@ class User < ApplicationRecord
   after_save :clear_password
 
   # Model Associations
+  has_attached_file :picture, styles: { thumb: "60x60#", normal: "300x300" }
   has_many :mastered_games, class_name: 'Game', inverse_of: :dungeon_master, foreign_key: 'dungeon_master_id'
   has_and_belongs_to_many :played_games, class_name: 'Game'
   has_many :characters
@@ -25,6 +26,10 @@ class User < ApplicationRecord
   validates :password,
     confirmation: true
 
+  validates_attachment :picture,
+    content_type: { content_type: ["image/jpeg", "image/png"] },
+    size: { in: 0..2.megabytes }
+
   validates_length_of :password, :in => 6..20, :on => :create
 
   # Class Methods
@@ -34,7 +39,6 @@ class User < ApplicationRecord
 			user.uid = auth.uid
 			user.name = auth.info.first_name + " " + auth.info.last_name
 			user.email = auth.info.email
-			user.picture = auth.info.image
 			user.save!
     end
   end

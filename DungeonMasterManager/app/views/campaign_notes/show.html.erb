@@ -22,9 +22,14 @@
         <p class="card-text">
           <%= @campaign_note.content %>
         </p>
-
+        <br>
+        <% if @campaign_note.document.file? %>
+          <h4>Attached Document</h4>
+          <div class="well">
+            <p> <%= link_to @campaign_note.document_file_name, @campaign_note.document.url %></p>
+          </div>
+        <% end %>
         <% if user_is_dm? %>
-          <br>
           <h4>DM Annotation:</h4>
           <div class="well">
             <%= @campaign_note.dm_annotation %>

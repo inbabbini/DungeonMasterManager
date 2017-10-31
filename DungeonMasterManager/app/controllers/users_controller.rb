@@ -55,12 +55,11 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:name, :email, :password, :password_confirmation)
+    params.require(:user).permit(:name, :email, :password, :password_confirmation, :picture)
   end
 
   def set_user
     @user = current_user
-    @user.picture = 'Profiles/profile_default.jpg' if @user.picture.nil?
   end
 
 end

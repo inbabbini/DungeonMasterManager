@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171029013040) do
+ActiveRecord::Schema.define(version: 20171031034331) do
 
   create_table "achievements", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.bigint "character_id"
@@ -30,6 +30,10 @@ ActiveRecord::Schema.define(version: 20171029013040) do
     t.string "dm_annotation"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "document_file_name"
+    t.string "document_content_type"
+    t.integer "document_file_size"
+    t.datetime "document_updated_at"
     t.index ["category_id"], name: "index_campaign_notes_on_category_id"
     t.index ["game_id"], name: "index_campaign_notes_on_game_id"
   end
@@ -51,6 +55,10 @@ ActiveRecord::Schema.define(version: 20171029013040) do
     t.text "biography"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "avatar_file_name"
+    t.string "avatar_content_type"
+    t.integer "avatar_file_size"
+    t.datetime "avatar_updated_at"
     t.index ["game_id"], name: "index_characters_on_game_id"
     t.index ["user_id"], name: "index_characters_on_user_id"
   end
@@ -140,6 +148,10 @@ ActiveRecord::Schema.define(version: 20171029013040) do
     t.datetime "updated_at", null: false
     t.string "encrypted_password"
     t.string "salt"
+    t.string "picture_file_name"
+    t.string "picture_content_type"
+    t.integer "picture_file_size"
+    t.datetime "picture_updated_at"
   end
 
 end

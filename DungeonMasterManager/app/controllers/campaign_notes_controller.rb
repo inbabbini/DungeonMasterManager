@@ -94,6 +94,6 @@ class CampaignNotesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def campaign_note_params
-      params.require(:campaign_note).permit(:game_id, :title, :content, :visible_by_players, :dm_annotation)
+      params.require(:campaign_note).permit(:game_id, :title, :content, :visible_by_players, :dm_annotation, :document)
     end
 end

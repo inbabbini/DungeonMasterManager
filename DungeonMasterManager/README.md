@@ -10,6 +10,9 @@ Things you may want to cover:
 * System dependencies
 
 * Configuration
+  * Database
+  * Paperclip
+  * Secrets (tema shared/enviroments)
 
 * Database creation
 
