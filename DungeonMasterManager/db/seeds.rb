@@ -8,7 +8,7 @@
 
 # --------------- Create Users ------------------
 
-user1 = User.create(name: 'Iron', uid: '115235670175543925724', provider: 'google_oauth2', email: 'ignababbini@gmail.com', password: 'ironiron')
+user1 = User.create(name: 'Iron', email: 'iron@dmm.com', password: 'ironiron')
 user2 = User.create(name: 'Ponch', email: 'ponch@dmm.com', password: 'ponchponch')
 user3 = User.create(name: 'Pain', email: 'pain@dmm.com', password: 'painpain')
 user4 = User.create(name: 'Richard', email: 'richard@dmm.com', password: 'richardrichard')
