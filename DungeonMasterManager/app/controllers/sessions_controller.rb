@@ -15,14 +15,14 @@ class SessionsController < ApplicationController
       redirect_to login_path, flash: { error: 'Incorrect user/password combination provided' }
     else
 	   login(@user)
-	   redirect_to root_path, flash: { success: 'Greetings, %s!' % [@user.name] } 
+	   redirect_to root_path, flash: { success: 'Greetings, %s!' % [@user.name] }
     end
   end
 
   def destroy
     @user = current_user
   	logout
-  	redirect_to root_path, notice: 'Farewell, %s' % [@user.name]
+  	redirect_to root_path, flash: { success: 'Goodbye, %s!' % [@user.name] } 
   end
 
   private

@@ -33,7 +33,7 @@ class NotesController < ApplicationController
 
     respond_to do |format|
       if @note.save
-        format.html { redirect_to game_character_note_path(@game, @character), flash: { success: 'Note was successfully created!' } }
+        format.html { redirect_to game_character_note_path(@game, @character, @note), flash: { success: 'Note was successfully created!' } }
         format.json { render :show, status: :created, location: @note }
       else
         flash[:error] = 'Hmm, there seems to be some errors with your information...'

@@ -1,9 +1,9 @@
 class CharactersController < ApplicationController
   before_action :authenticate
   before_action :set_game
+  before_action :set_character, only: [:show, :edit, :update, :destroy]
   before_action :user_owns_character_or_game?, only: [:show, :edit, :update, :destroy]
   before_action :user_belongs_to_game?, only: [:new, :create]
-  before_action :set_character, only: [:show, :edit, :update, :destroy]
 
   # GET /characters
   # GET /characters.json

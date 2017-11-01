@@ -19,6 +19,7 @@ class GamesController < ApplicationController
       @categories = Category.includes(:campaign_notes).where(campaign_notes: {visible_by_players: true}).for_game(@game).order("name DESC")
       @characters = Character.where(game: @game, user: current_user)
     end
+    @rules = Rule.where(game: @game)
   end
 
   # GET /games/new

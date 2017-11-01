@@ -6,7 +6,7 @@
   <div class="col-sm-8">
     <legend>New Rule</legend>
 
-    <%= form_with(model: rule, url: game_rules_path(@game) local: true) do |form| %>
+    <%= form_with(model: @rule, url: game_rules_path(@game), local: true) do |form| %>
       <%= render 'form_errors', rule: @rule %>
       <%= render 'form_fields', form: form %>
     <% end %>

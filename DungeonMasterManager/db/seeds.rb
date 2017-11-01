@@ -38,8 +38,6 @@ characters << Character.create(game: game2, user: user3, name: 'Macey', race: 'H
 characters << Character.create(game: game2, user: user4, name: 'Axey', race: 'Half-orc', description: '')
 characters << Character.create(game: game2, user: user5, name: 'Swordy', race: 'Dragonborn', description: '')
 
-
-
 # ---------------- Create Items ------------------
 
 weapons = ['sword', 'axe', 'dagger', 'short bow', 'short sword', 'lognsword', 'crossbow', 'hammer', 'warhammer']
@@ -131,3 +129,13 @@ game1.campaign_notes << CampaignNote.new(category: g1categories[1], title: 'El O
 game2.campaign_notes << CampaignNote.new(category: g2categories[0], title: 'Welton', content: 'Weltons town is a peacefull place', visible_by_players: true)
 game2.campaign_notes << CampaignNote.new(category: g2categories[0], title: 'Wolves Den', content: 'Where the wolves dwell', visible_by_players: true, dm_annotation: '6 wolves total, plus Bolt and Flame')
 game2.campaign_notes << CampaignNote.new(category: g2categories[1], title: 'Flame and Bolt', content: 'The 2 magic infused wolves', visible_by_players: false)
+
+# ------------- Create Rules --------------------------
+
+game1.rules << Rule.new(description: 'No smoking allowed')
+game1.rules << Rule.new(description: 'No cellphones allowed')
+game1.rules << Rule.new(description: 'Do not split the party')
+
+game2.rules << Rule.new(description: 'No UA material allowed')
+game2.rules << Rule.new(description: 'DM rolls behind the screen')
+game2.rules << Rule.new(description: 'Cocked dice are rerolled')
