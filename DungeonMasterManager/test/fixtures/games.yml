@@ -1,7 +1,11 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  secret_key: MyString
+ponchoServer:
+  name: Poncho Server
+  secret_key: altohash
+  dungeon_master: ponch
 
-two:
-  secret_key: MyString
+ironServer:
+  name: Iron Server
+  secret_key: altohash2
+  dungeon_master: iron

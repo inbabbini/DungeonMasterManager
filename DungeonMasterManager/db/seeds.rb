@@ -28,15 +28,15 @@ game2.players << [user2, user3, user4, user5, user6]
 # --------------- Create Characters -------------
 characters = []
 characters << Character.create(game: game1, user: user1, name: 'Zareth', race: 'Extraplanar', description: 'Bad motherfucker')
-characters << Character.create(game: game1, user: user3, name: 'Mathias', race: 'Dwarf', description: '')
-characters << Character.create(game: game1, user: user4, name: 'Shiro', race: 'Human', description: '')
-characters << Character.create(game: game1, user: user5, name: 'Manzer', race: 'Human', description: '')
-characters << Character.create(game: game1, user: user6, name: 'Firenze', race: 'Centaur??', description: '')
+characters << Character.create(game: game1, user: user3, name: 'Mathias', race: 'Dwarf')
+characters << Character.create(game: game1, user: user4, name: 'Shiro', race: 'Human')
+characters << Character.create(game: game1, user: user5, name: 'Manzer', race: 'Human')
+characters << Character.create(game: game1, user: user6, name: 'Firenze', race: 'Centaur??')
 
-characters << Character.create(game: game2, user: user2, name: 'Stabby', race: 'Wood Elf', description: '')
-characters << Character.create(game: game2, user: user3, name: 'Macey', race: 'Hill Dwarf', description: '')
-characters << Character.create(game: game2, user: user4, name: 'Axey', race: 'Half-orc', description: '')
-characters << Character.create(game: game2, user: user5, name: 'Swordy', race: 'Dragonborn', description: '')
+characters << Character.create(game: game2, user: user2, name: 'Stabby', race: 'Wood Elf')
+characters << Character.create(game: game2, user: user3, name: 'Macey', race: 'Hill Dwarf')
+characters << Character.create(game: game2, user: user4, name: 'Axey', race: 'Half-orc')
+characters << Character.create(game: game2, user: user5, name: 'Swordy', race: 'Dragonborn')
 
 # ---------------- Create Items ------------------
 

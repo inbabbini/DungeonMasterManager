@@ -1,13 +1,41 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  name: MyString
-  race: MyString
-  description: MyString
-  biography: MyText
+zareth:
+  game: ponchoServer
+  user: iron
+  name: Zareth
+  race: Extraplanar
+  description: Bad motherfucker
+  biography: All the backstory
 
-two:
-  name: MyString
-  race: MyString
-  description: MyString
-  biography: MyText
+mathias:
+  game: ponchoServer
+  user: pain
+  name: Mathias
+  race: Dwarf
+  description: Agry little dwarf
+
+shiro:
+  game: ponchoServer
+  user: richard
+  name: Shiro
+  race: Human
+  description: Ninja McNinjaface
+
+stabby:
+  game: ironServer
+  user: ponch
+  name: Stabby
+  race: Wood Elf
+
+macey:
+  game: ironServer
+  user: pain
+  name: Macey
+  race: Hill Dwarf
+
+axey:
+  game: ironServer
+  user: richard
+  name: Axey
+  race: Half-orc

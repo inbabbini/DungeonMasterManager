@@ -6,4 +6,11 @@ class ActiveSupport::TestCase
   fixtures :all
 
   # Add more helper methods to be used by all tests here...
+  def get_salt
+    @salt ||= BCrypt::Engine.generate_salt
+  end
+  
+  def encrypt_password password, salt
+    BCrypt::Engine.hash_secret(login_password, get_salt)
+  end
 end

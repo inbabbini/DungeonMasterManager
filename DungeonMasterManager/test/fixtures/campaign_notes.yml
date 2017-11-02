@@ -5,11 +5,9 @@ one:
   content: MyText
   visible_by_players: false
   dm_annotation: MyString
-  text: MyString
 
 two:
   title: MyString
   content: MyText
   visible_by_players: false
   dm_annotation: MyString
-  text: MyString
