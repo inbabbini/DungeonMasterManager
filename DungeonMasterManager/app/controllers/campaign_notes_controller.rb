@@ -23,6 +23,7 @@ class CampaignNotesController < ApplicationController
   # GET /campaign_notes/new
   def new
     @campaign_note = CampaignNote.new
+    @categories = Category.includes(:campaign_notes).for_game(@game).order("name DESC")
   end
 
   # GET /campaign_notes/1/edit
@@ -34,7 +35,6 @@ class CampaignNotesController < ApplicationController
   def create
     @campaign_note = CampaignNote.new(campaign_note_params)
     @campaign_note.game = @game
-    @campaign_note.category = Category.where(game_id: @game).first
 
     respond_to do |format|
       if @campaign_note.save
@@ -96,6 +96,6 @@ class CampaignNotesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def campaign_note_params
-      params.require(:campaign_note).permit(:game_id, :title, :content, :visible_by_players, :dm_annotation, :document)
+      params.require(:campaign_note).permit(:game_id, :category_id, :title, :content, :visible_by_players, :dm_annotation, :document)
     end
 end

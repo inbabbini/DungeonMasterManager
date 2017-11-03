@@ -5,6 +5,7 @@ class Game < ApplicationRecord
   has_many :characters
   has_many :categories
   has_many :campaign_notes
+  has_many :rules
 
   #Class Validations
   validates :name,

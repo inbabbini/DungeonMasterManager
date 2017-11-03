@@ -2,10 +2,18 @@
 
 ponchoServer:
   name: Poncho Server
-  secret_key: altohash
+  secret_key: altohashkey
   dungeon_master: ponch
+  players:
+    - iron
+    - pain
+    - richard
 
 ironServer:
   name: Iron Server
-  secret_key: altohash2
+  secret_key: altohashkey2
   dungeon_master: iron
+  players:
+    - iron
+    - pain
+    - richard

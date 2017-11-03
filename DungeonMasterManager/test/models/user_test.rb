@@ -1,9 +1,6 @@
 require 'test_helper'
 
 class UserTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
 
   test "does not save without presence-required properties" do
     new_user = User.new
@@ -25,32 +22,56 @@ class UserTest < ActiveSupport::TestCase
     user.email = 'nonvalidmail'
     assert_not user.save
 
-    user.email = 'valid@mail.com'
+    user.email = 'n@onvalidemail'
+    assert_not user.save
+
+    user.email = '@nonvalidemail'
+    assert_not user.save
+
+    user.email = 'iron@mail.com'
     assert user.save
   end
 
-  test "save with valid email" do
-    skip
-  end
+  test "does not save with password shorter than minimum (6) length" do
+    user = users(:iron)
+    user.password = 'ironi'
+    assert_not user.save
 
-  test "save with password shorter than minimum (6) length" do
-    skip
-  end
+    user.password = 'ironir'
+    assert user.save
 
-  test "save with password equal or longer than minimum (6) length" do
-    skip
+    user.password = 'ironiron'
+    assert user.save
   end
 
   test "finds and authenticates valid user" do
-    skip
+    user = users(:iron)
+    user.password = 'ironiron'
+    user.save
+
+    auth_params = { email: 'iron@dmm.com', password: 'ironiron'}
+    auth_user = User.find_and_authenticate(auth_params)
+
+    assert_not_nil auth_user
+    assert_equal user, auth_user
+
   end
 
   test "does not find and authenticates invalid user" do
-    skip
+    auth_params = { email: 'nonuser@dmm.com', password: 'nonuser'}
+    auth_user = User.find_and_authenticate(auth_params)
+
+    assert_nil auth_user
   end
 
   test "does not authenticates valid user with non-matching password" do
-    skip
+    user = users(:iron)
+    user.password = 'ironiron'
+    user.save
+    auth_params = { email: 'iron@dmm.com', password: 'unmatchingpass'}
+    auth_user = User.find_and_authenticate(auth_params)
+
+    assert_nil auth_user
   end
 
 end

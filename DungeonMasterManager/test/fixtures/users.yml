@@ -15,3 +15,7 @@ pain:
 richard:
   name: Richard
   email: richard@dmm.com
+
+freshUser:
+  name: Fresh User
+  email: fresh@dmm.com

@@ -1,7 +1,13 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  name: MyString
+npcs:
+  name: NPCs
 
-two:
-  name: MyString
+locations:
+  name: Locations
+
+enemies:
+  name: Enemies
+
+allies:
+  name: Allies

@@ -24,13 +24,12 @@ class User < ApplicationRecord
     format: EMAIL_REGEX
 
   validates :password,
+    length: {in: 6..20},
     confirmation: true
 
   validates_attachment :picture,
     content_type: { content_type: ["image/jpeg", "image/png"] },
     size: { in: 0..2.megabytes }
-
-  validates_length_of :password, :in => 6..20, :on => :create
 
   # Class Methods
   def self.find_or_create(auth)

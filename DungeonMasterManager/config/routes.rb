@@ -21,15 +21,15 @@ Rails.application.routes.draw do
   get 'games/join', to: 'games#join', as: 'games_join'
   post 'games/register', to: 'games#register', as: 'games_register'
 
-  resources :users
+  resources :users, except: :index
   resources :games do
     resources :characters do
-      resources :skills
-      resources :items
-      resources :notes
-      resources :achievements
-      resources :statuses
-      resources :traits
+      resources :skills, except: [:index, :show]
+      resources :items, except: [:index, :show]
+      resources :notes, except: [:index, :show]
+      resources :achievements, except: [:index, :show]
+      resources :statuses, except: [:index, :show]
+      resources :traits, except: [:index, :show]
     end
     resources :campaign_notes
     resources :categories

@@ -19,10 +19,10 @@ user8 = User.create(name: 'Diego', email: 'diego@dmm.com', password: 'diegodiego
 
 # --------------- Create Games ------------------
 
-game1 = Game.create(name: 'Poncho Server', secret_key: 'altohash', dungeon_master: user2)
+game1 = Game.create(name: 'Poncho Server', secret_key: 'altohashkey', dungeon_master: user2)
 game1.players << [user1, user3, user4, user5, user6, user7, user8]
 
-game2 = Game.create(name: 'Iron Server', secret_key: 'altohash2', dungeon_master: user1)
+game2 = Game.create(name: 'Iron Server', secret_key: 'altohashkey2', dungeon_master: user1)
 game2.players << [user2, user3, user4, user5, user6]
 
 # --------------- Create Characters -------------
@@ -135,7 +135,8 @@ game2.campaign_notes << CampaignNote.new(category: g2categories[1], title: 'Flam
 game1.rules << Rule.new(description: 'No smoking allowed')
 game1.rules << Rule.new(description: 'No cellphones allowed')
 game1.rules << Rule.new(description: 'Do not split the party')
-
+game1.save
 game2.rules << Rule.new(description: 'No UA material allowed')
 game2.rules << Rule.new(description: 'DM rolls behind the screen')
 game2.rules << Rule.new(description: 'Cocked dice are rerolled')
+game2.save
