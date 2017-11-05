@@ -1,5 +1,6 @@
 class SessionsController < ApplicationController
   before_action :check_already_logged, only: [:new, :create]
+  before_action :authenticate, only: :destroy
 
   def new
   end
@@ -22,7 +23,7 @@ class SessionsController < ApplicationController
   def destroy
     @user = current_user
   	logout
-  	redirect_to root_path, flash: { success: 'Goodbye, %s!' % [@user.name] } 
+  	redirect_to root_path, flash: { success: 'Goodbye, %s!' % [@user.name] }
   end
 
   private

@@ -15,10 +15,15 @@ class ActiveSupport::TestCase
   end
 
   def logout
-    session[:user_id] = nil
+    post logout_url
   end
 
-  def login(user)
-    session[:user_id] = user.id
+  def login(email, password)
+    post login_url, params: { session: { email: email, password: password } }
+  end
+
+  def create_user(name, email, password)
+    post users_url, params: { user: { name: name, email: email, password: password, password_confirmation: password } }
+    #User.create(name: name, email: email, password: password, password_confirmation: password)
   end
 end
