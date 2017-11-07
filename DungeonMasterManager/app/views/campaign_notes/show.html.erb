@@ -1,43 +1,42 @@
-<legend> <%= @game.name %> Campaign Note </legend>
+<legend> <%= @game.name %> <%= CampaignNote.model_name.human %> </legend>
 <div class="row">
   <div class="col-2">
     <% if user_is_dm? %>
-      <%= link_to 'Change Visibility', change_game_campaign_note_visibility_path(@game, @campaign_note), class: "btn btn-primary text-light btn-block" %>
-      <%= link_to 'Edit Note', edit_game_campaign_note_path(@game, @campaign_note), class: "btn btn-primary text-light btn-block" %>
-      <%= link_to 'Destroy', game_campaign_note_path(@game, @campaign_note), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger text-light btn-block" %>
+      <%= link_to t('button.change_visibility'), change_game_campaign_note_visibility_path(@game, @campaign_note), class: "btn btn-primary text-light btn-block" %>
+      <%= link_to t('button.edit', page: CampaignNote.model_name.human), edit_game_campaign_note_path(@game, @campaign_note), class: "btn btn-primary text-light btn-block" %>
+      <%= link_to t('button.delete', page: CampaignNote.model_name.human), game_campaign_note_path(@game, @campaign_note), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger text-light btn-block" %>
     <% end %>
-    <%= link_to 'Back to Campaign Notes', game_campaign_notes_path, class: "btn btn-dark text-light btn-block" %>
-    <%= link_to 'Back to Game', @game, class: "btn btn-dark text-light btn-block" %>
+    <%= link_to t('button.back', page: CampaignNote.model_name.human.pluralize), game_campaign_notes_path, class: "btn btn-dark text-light btn-block" %>
+    <%= link_to t('button.back', page: Game.model_name.human), @game, class: "btn btn-dark text-light btn-block" %>
   </div>
   <div class="col-8">
 
     <div class="card mb-3">
       <div class="card-header bg-dark text-light">
         <%= @campaign_note.title %>
-        <div class="pull-right"> Visible to <%= @campaign_note.visible_by_players ? 'All' : 'DM'%></div>
+        <div class="pull-right"> <%= @campaign_note.visible_by_players ? t('view_text.visibility_all') : t('view_text.visibility_dm') %></div>
       </div>
 
       <div class="card-body">
-        <!-- <h4 class="card-title"><%= @campaign_note.title %> </h4> -->
         <p class="card-text">
           <%= @campaign_note.content %>
         </p>
         <br>
         <% if @campaign_note.document.file? %>
-          <h4>Attached Document</h4>
+          <h4><%= t('view_text.attached') %> <%= CampaignNote.human_attribute_name("document") %></h4>
           <div class="well">
             <p> <%= link_to @campaign_note.document_file_name, @campaign_note.document.url %></p>
           </div>
         <% end %>
         <% if user_is_dm? %>
-          <h4>DM Annotation:</h4>
+          <h4><%= CampaignNote.human_attribute_name("dm_annotation") %>:</h4>
           <div class="well">
             <%= @campaign_note.dm_annotation %>
           </div>
         <% end %>
         <div class="pull-right">
-          <small class="text-muted">Created <%= distance_of_time_in_words_to_now(@campaign_note.updated_at) %> |
-          Last updated <%= distance_of_time_in_words_to_now(@campaign_note.updated_at) %></small>
+          <small class="text-muted"><%= t('view_text.created') %> <%= distance_of_time_in_words_to_now(@campaign_note.updated_at) %> |
+          <%= t('view_text.last_updated') %> <%= distance_of_time_in_words_to_now(@campaign_note.updated_at) %></small>
         </div>
       </div>
     </div>

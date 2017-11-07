@@ -39,10 +39,10 @@ class GamesController < ApplicationController
 
     respond_to do |format|
       if @game.save
-        format.html { redirect_to @game, flash: { success: 'Game was successfully created!' } }
+        format.html { redirect_to @game, flash: { success: I18n.t 'flash_messages.success.created', model: I18n.t 'model.game' } }
         format.json { render :show, status: :created, location: @game }
       else
-        flash[:error] = 'Hmm, there seems to be some errors with your information...'
+        flash.now[:error] = I18n.t 'flash_messages.error.form'
         format.html { render :new }
         format.json { render json: @game.errors, status: :unprocessable_entity }
       end
@@ -54,10 +54,10 @@ class GamesController < ApplicationController
   def update
     respond_to do |format|
       if @game.update(game_params)
-        format.html { redirect_to @game, flash: { success: 'Game was successfully updated!' } }
+        format.html { redirect_to @game, flash: { success: I18n.t 'flash_messages.success.updated', model: I18n.t 'model.game' } }
         format.json { render :show, status: :ok, location: @game }
       else
-        flash[:error] = 'Hmm, there seems to be some errors with your information...'
+        flash.now[:error] = I18n.t 'flash_messages.error.form'
         format.html { render :edit }
         format.json { render json: @game.errors, status: :unprocessable_entity }
       end
@@ -69,7 +69,7 @@ class GamesController < ApplicationController
   def destroy
     @game.destroy
     respond_to do |format|
-      format.html { redirect_to games_url, flash: { success: 'Game was successfully deleted!' } }
+      format.html { redirect_to games_url, flash: { success: I18n.t 'flash_messages.success.destroyed', model: I18n.t 'model.game' } }
       format.json { head :no_content }
     end
   end
@@ -83,7 +83,7 @@ class GamesController < ApplicationController
       @registered, @message = @game.add_player current_user
     else
       @registered = false
-      @message = 'The key provided does not belong to any game'
+      @message = I18n.t 'flash_messages.error.invalid_game_key'
     end
 
     respond_to do |format|

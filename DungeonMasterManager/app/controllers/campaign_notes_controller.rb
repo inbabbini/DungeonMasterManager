@@ -38,10 +38,10 @@ class CampaignNotesController < ApplicationController
 
     respond_to do |format|
       if @campaign_note.save
-        format.html { redirect_to game_campaign_note_path(@game, @campaign_note), flash: { success: 'Campaign Note was successfully created!' } }
+        format.html { redirect_to game_campaign_note_path(@game, @campaign_note), flash: { success: I18n.t 'flash_messages.success.created', model: I18n.t 'model.campaign_note' } }
         format.json { render :show, status: :created, location: @campaign_note }
       else
-        flash[:error] = 'Hmm, there seems to be some errors with your information...'
+        flash.now[:error] = I18n.t 'flash_messages.error.form'
         format.html { render :new }
         format.json { render json: @campaign_note.errors, status: :unprocessable_entity }
       end
@@ -53,7 +53,7 @@ class CampaignNotesController < ApplicationController
 
     respond_to do |format|
       if @campaign_note.save
-        format.html { redirect_to game_campaign_note_path(@game, @campaign_note), flash: { success: 'Campaign Note visibility successfully inverted!' } }
+        format.html { redirect_to game_campaign_note_path(@game, @campaign_note), flash: { success: I18n.t 'flash_messages.success.visibility_inverted', model: I18n.t 'model.campaign_note' } }
         format.json { render :show, status: :ok, location: @campaign_note }
       else
         flash[:error] = 'Hmm, there seems to be some problem with this note visibility...'
@@ -68,10 +68,10 @@ class CampaignNotesController < ApplicationController
   def update
     respond_to do |format|
       if @campaign_note.update(campaign_note_params)
-        format.html { redirect_to game_campaign_note_path(@game, @campaign_note), flash: { success: 'Campaign Note was successfully updated!' } }
+        format.html { redirect_to game_campaign_note_path(@game, @campaign_note), flash: { success: I18n.t 'flash_messages.success.updated', model: I18n.t 'model.campaign_note' } }
         format.json { render :show, status: :ok, location: @campaign_note }
       else
-        flash[:error] = 'Hmm, there seems to be some errors with your information...'
+        flash.now[:error] = I18n.t 'flash_messages.error.form'
         format.html { render :edit }
         format.json { render json: @campaign_note.errors, status: :unprocessable_entity }
       end
@@ -83,7 +83,7 @@ class CampaignNotesController < ApplicationController
   def destroy
     @campaign_note.destroy
     respond_to do |format|
-      format.html { redirect_to game_campaign_notes_url, flash: { success: 'Campaign Note was successfully destroy!' } }
+      format.html { redirect_to game_campaign_notes_url, flash: { success: I18n.t 'flash_messages.success.destroyed', model: I18n.t 'model.campaign_note' } }
       format.json { head :no_content }
     end
   end

@@ -30,4 +30,73 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  flash_messages:
+    error:
+      form: 'Hmm, there seems to be some errors with your information...'
+      invalid_game_key: 'The key provided does not belong to any game'
+      authentication: 'Incorrect user/password combination provided'
+      join_game: 'You already belong to this game.'
+    success:
+      join_game: 'You just joined %{game}. Welcome aboard!'
+      created: '%{model} successfully created!'
+      updated: '%{model} successfully updated!'
+      destroyed: '%{model} successfully destroyed!'
+      visibility_inverted: '%{model} visibility successfully inverted!'
+      authentication: 'Greetings, %{name}!'
+      logout: 'Greetings, %{name}!'
+      user:
+        registered: 'Wellcome, %{name} You have successfully registered.'
+        deleted: 'You successfully deleted your user. Farewell!'
+    warning:
+      already_signed: 'You are already signed in'
+      not_allowed: 'You are not allowed to do that!'
+
+  button:
+    back: 'Back to %{page}'
+    edit: 'Edit %{model}'
+    delete: 'Delete %{model}'
+    change_visibility: 'Change Visibility'
+
+  legend:
+    new: 'New %{model}'
+    editing: 'Editing %{model}'
+
+  view_text:
+    visibility_all: 'Visible to All'
+    visibility_dm: 'Visible to DM'
+    created: 'Created'
+    last_updated: 'Last updated'
+    attached: 'Attached'
+
+  model:
+    achievement: 'Achievement'
+    campaign_note: 'Campaign Note'
+    category: 'Category'
+    character: 'Character'
+    game: 'Game'
+    item: 'Item'
+    note: 'Note'
+    rule: 'Rule'
+    skill: 'Skill'
+    status: 'Status'
+    trait: 'Trait'
+    user: 'User'
+
+  activerecord:
+    models:
+      achievement: 'Achievement'
+      campaign_note: 'Campaign Note'
+      category: 'Category'
+      character: 'Character'
+      game: 'Game'
+      item: 'Item'
+      note: 'Note'
+      rule: 'Rule'
+      skill: 'Skill'
+      status: 'Status'
+      trait: 'Trait'
+      user: 'User'
+    attributes:
+      campaign_note:
+        dm_annotation: 'DM Annotation'
+        document: 'Document'

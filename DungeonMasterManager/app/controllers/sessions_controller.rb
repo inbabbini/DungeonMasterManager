@@ -13,17 +13,17 @@ class SessionsController < ApplicationController
     end
 
     if @user.nil?
-      redirect_to login_path, flash: { error: 'Incorrect user/password combination provided' }
+      redirect_to login_path, flash: { error: I18n.t 'flash_messages.error.authentication' }
     else
 	   login(@user)
-	   redirect_to root_path, flash: { success: 'Greetings, %s!' % [@user.name] }
+	   redirect_to root_path, flash: { success: I18n.t 'flash_messages.success.authentication', name: @user.name }
     end
   end
 
   def destroy
     @user = current_user
   	logout
-  	redirect_to root_path, flash: { success: 'Goodbye, %s!' % [@user.name] }
+  	redirect_to root_path, flash: { success: I18n.t 'flash_messages.success.logout', name: @user.name }
   end
 
   private

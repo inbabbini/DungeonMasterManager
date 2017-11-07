@@ -33,10 +33,10 @@ class AchievementsController < ApplicationController
 
     respond_to do |format|
       if @achievement.save
-        format.html { redirect_to game_character_path(@game, @character), flash: { success: 'Achievement successfully created!' } }
+        format.html { redirect_to game_character_path(@game, @character), flash: { success: I18n.t 'flash_messages.success.created', model: I18n.t 'model.achievement' } }
         format.json { render :show, status: :created, location: @achievement }
       else
-        flash.now[:error] = 'Hmm, there seems to be some problems with your information...'
+        flash.now[:error] = I18n.t 'flash_messages.error.form'
         format.html { render :new }
         format.json { render json: @achievement.errors, status: :unprocessable_entity }
       end
@@ -48,10 +48,10 @@ class AchievementsController < ApplicationController
   def update
     respond_to do |format|
       if @achievement.update(achievement_params)
-        format.html { redirect_to game_character_path(@game, @character), flash: { success: 'Achievement was successfully updated!' } }
+        format.html { redirect_to game_character_path(@game, @character), flash: { success: I18n.t 'flash_messages.success.updated', model: I18n.t 'model.achievement' } }
         format.json { render :show, status: :ok, location: @achievement }
       else
-        flash[:error] = 'Hmm, there seems to be some problems with your information...'
+        flash.now[:error] = I18n.t 'flash_messages.error.form'
         format.html { render :edit }
         format.json { render json: @achievement.errors, status: :unprocessable_entity }
       end
@@ -63,7 +63,7 @@ class AchievementsController < ApplicationController
   def destroy
     @achievement.destroy
     respond_to do |format|
-      format.html { redirect_to game_character_path(@game, @character), flash: { success: 'Achievement was successfully destroyed!' } }
+      format.html { redirect_to game_character_path(@game, @character), flash: { success: I18n.t 'flash_messages.success.destroyed', model: I18n.t 'model.achievement' } }
       format.json { head :no_content }
     end
   end

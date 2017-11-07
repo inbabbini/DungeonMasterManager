@@ -1,10 +1,10 @@
 <div class="row">
   <div class="col-sm-2">
-    <%= link_to 'Back to Character', game_character_path(@game, @character), class: 'btn btn-block btn-dark text-light' %>
+    <%= link_to t('button.back', page: t('model.character')), game_character_path(@game, @character), class: 'btn btn-block btn-dark text-light' %>
   </div>
 
   <div class="col-sm-8">
-    <legend>Editing Achievement</legend>
+    <legend><%= t('legend.editing', model: t('model.achievement')) %></legend>
 
     <%= form_with(model: @achievement, url: game_character_achievement_path(@game, @character, @achievement), local: true) do |form| %>
       <% render 'form_errors', achievement: @achievement %>

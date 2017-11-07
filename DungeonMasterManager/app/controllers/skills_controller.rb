@@ -33,10 +33,10 @@ class SkillsController < ApplicationController
 
     respond_to do |format|
       if @skill.save
-        format.html { redirect_to game_character_path(@game, @character), flash: { success: 'Skill was successfully created!' } }
+        format.html { redirect_to game_character_path(@game, @character), flash: { success: I18n.t 'flash_messages.success.created', model: I18n.t 'model.skill' } }
         format.json { render :show, status: :created, location: @skill }
       else
-        flash[:error] = 'Hmm, there seems to be some errors with your information...'
+        flash.now[:error] = I18n.t 'flash_messages.error.form'
         format.html { render :new }
         format.json { render json: @skill.errors, status: :unprocessable_entity }
       end
@@ -48,10 +48,10 @@ class SkillsController < ApplicationController
   def update
     respond_to do |format|
       if @skill.update(skill_params)
-        format.html { redirect_to game_character_path(@game, @character), flash: { success: 'Skill was successfully updated!' } }
+        format.html { redirect_to game_character_path(@game, @character), flash: { success: I18n.t 'flash_messages.success.updated', model: I18n.t 'model.skill' } }
         format.json { render :show, status: :ok, location: @skill }
       else
-        flash[:error] = 'Hmm, there seems to be some errors with your information...'
+        flash.now[:error] = I18n.t 'flash_messages.error.form'
         format.html { render :edit }
         format.json { render json: @skill.errors, status: :unprocessable_entity }
       end
@@ -63,7 +63,7 @@ class SkillsController < ApplicationController
   def destroy
     @skill.destroy
     respond_to do |format|
-      format.html { redirect_to skills_url, flash: { success: 'Skill was successfully destroy!' } }
+      format.html { redirect_to skills_url, flash: { success: I18n.t 'flash_messages.success.destroyed', model: I18n.t 'model.skill' } }
       format.json { head :no_content }
     end
   end
