@@ -2,18 +2,18 @@
 <div class="row">
   <div class="col-2">
     <% if user_is_dm? %>
-      <%= link_to 'New Rule', new_game_rule_path(@game), class: 'btn btn-success text-light btn-block' %>
+      <%= link_to t('button.new', page: Rule.model_name.human), new_game_rule_path(@game), class: 'btn btn-success text-light btn-block' %>
     <% end %>
-    <%= link_to 'Back to game', @game, class: "btn btn-dark text-light btn-block" %>
+    <%= link_to t('button.back', page: Game.model_name.human), @game, class: "btn btn-dark text-light btn-block" %>
   </div>
   <div class="col-8">
   <% @rules.each do |rule| %>
   <div class="card mb-3">
     <div class="card-header bg-dark text-light">
-      Rule #<%= rule.id %>
+    <%= '%s #%i' % [Rule.model_name.human, rule.id] %>
       <%if user_is_dm? %>
         <div class="pull-right">
-          <%= link_to 'Edit', edit_game_rule_path(@game, rule) %> | <%= link_to 'Destroy', game_rule_path(@game, rule), method: :delete, data: { confirm: 'Are you sure?' } %>
+          <%= link_to t('table.edit'), edit_game_rule_path(@game, rule) %> | <%= link_to t('table.destroy'), game_rule_path(@game, rule), method: :delete, data: { confirm: 'Are you sure?' } %>
         </div>
       <% end %>
     </div>
@@ -21,7 +21,7 @@
       <p class="card-text">
         <%= rule.description %>
       </p>
-      <small class="text-muted">Last updated <%= distance_of_time_in_words_to_now(rule.updated_at) %></small>
+      <small class="text-muted"><%= t('view_text.last_update') %> <%= distance_of_time_in_words_to_now(rule.updated_at) %></small>
     </div>
   </div>
   <% end %>

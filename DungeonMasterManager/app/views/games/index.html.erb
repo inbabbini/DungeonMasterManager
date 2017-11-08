@@ -1,15 +1,15 @@
 <div class="row">
   <div class="col-md-2 col-xs-12">
-    <%= link_to 'New Game', new_game_path, class: 'btn btn-success text-light btn-block' %>
-    <%= link_to 'Join Game', games_join_path, class: 'btn btn-primary text-light btn-block' %>
+    <%= link_to t('button.new', page: Game.model_name.human), new_game_path, class: 'btn btn-success text-light btn-block' %>
+    <%= link_to t('button.join', page: Game.model_name.human), games_join_path, class: 'btn btn-primary text-light btn-block' %>
   </div>
   <div class="col-md-4 col-xs-12">
-    <legend>Mastered Games</legend>
+    <legend><%= t('legend.mastered', model: Game.model_name.human.pluralize) %></legend>
     <table class="table table-striped table-hover">
       <thead class="thead-dark">
         <tr>
-          <th>Name</th>
-          <th colspan="3">Options</th>
+          <th><%= Game.human_attribute_name("name") %></th>
+          <th colspan="3"><%= t('table.options') %></th>
         </tr>
       </thead>
 
@@ -17,9 +17,9 @@
         <% @mastered_games.each do |game| %>
           <tr>
             <td><%= game.name %></td>
-            <td><%= link_to 'Show', game %></td>
-            <td><%= link_to 'Edit', edit_game_path(game) %></td>
-            <td><%= link_to 'Destroy', game, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            <td><%= link_to t('table.show'), game %></td>
+            <td><%= link_to t('table.edit'), edit_game_path(game) %></td>
+            <td><%= link_to t('table.destroy'), game, method: :delete, data: { confirm: 'Are you sure?' } %></td>
           </tr>
         <% end %>
       </tbody>
@@ -27,12 +27,12 @@
   </div>
 
   <div class="col-md-4 col-xs-12">
-    <legend>Played Games</legend>
+    <legend><%= t('legend.played', model: Game.model_name.human.pluralize) %></legend>
     <table class="table table-striped table-hover">
       <thead class="thead-dark">
         <tr>
           <th>Name</th>
-          <th colspan="3">Options</th>
+          <th colspan="3"><%= t('table.options')%></th>
         </tr>
       </thead>
 
@@ -40,7 +40,7 @@
         <% @played_games.each do |game| %>
           <tr>
             <td><%= game.name %></td>
-            <td><%= link_to 'Show', game %></td>
+            <td><%= link_to t('table.show'), game %></td>
           </tr>
         <% end %>
       </tbody>

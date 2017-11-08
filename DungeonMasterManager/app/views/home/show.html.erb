@@ -1,13 +1,13 @@
 <div class="jumbotron jumbotron-fluid">
   <div class="container text-center">
-    <h1> Welcome to </h1>
+    <h1> <%= t('legend.welcome') %> </h1>
     <h1 class="display-3 font-weight-bold">Dungeon Master Manager</h1>
     <% if user_signed_in? %>
-      <%= link_to "My Profile", user_path(current_user), class:'btn btn-primary btn-block text-light' %>
-      <%= link_to "My Games", games_path, class:'btn btn-dark btn-block text-light' %>
+      <%= link_to t('button.my_games'), user_path(current_user), class:'btn btn-primary btn-block text-light' %>
+      <%= link_to t('button.my_profile'), games_path, class:'btn btn-dark btn-block text-light' %>
 
     <% else %>
-      <%= link_to "Sign in", login_path, class:'btn btn-danger btn-block text-light' %>
+      <%= link_to t('button.login'), login_path, class:'btn btn-danger btn-block text-light' %>
     <% end %>
 
   </div>

@@ -1,11 +1,11 @@
 <div class="row">
   <div class="col-sm-2">
-    <%= link_to 'Show Game', game_path(@game), class: 'btn btn-block btn-dark text-light' %>
-    <%= link_to 'Back to Games', games_path, class: 'btn btn-block btn-dark text-light' %>
+    <%= link_to t('button.show', page: Game.model_name.human), game_path(@game), class: 'btn btn-block btn-dark text-light' %>
+    <%= link_to t('button.back', page: Game.model_name.human.pluralize), games_path, class: 'btn btn-block btn-dark text-light' %>
   </div>
 
   <div class="col-sm-8">
-    <legend>Editing Game</legend>
+    <legend><%= t('legend.editing', model: Game.model_name.human) %></legend>
 
     <%= form_with(model: @game, url: game_path(@game), local: true) do |form| %>
       <%= render 'form_errors', game: @game %>

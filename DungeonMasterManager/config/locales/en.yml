@@ -30,6 +30,16 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
+  navbar:
+    hello: 'Hello, %{username}'
+
+  notification:
+    header:
+      error: 'Critical <b>Failure</b>!'
+      notice: 'You <b>notice</b> something'
+      success: 'Critical <b>success</b>!'
+      warning: 'Oh no, you <b>won't!</b>'
+
   flash_messages:
     error:
       form: 'Hmm, there seems to be some errors with your information...'
@@ -52,14 +62,39 @@ en:
       not_allowed: 'You are not allowed to do that!'
 
   button:
+    home: 'Home'
+    login_with: 'Login with %{provider}'
+    my_games: 'My Games'
+    my_profile: 'My Profile'
+    login: 'Login'
+    logout: 'Logout'
+    register: 'Register'
+    save: 'Save'
+    join: 'Join %{model}'
+    new: 'New %{model}'
+    show: 'Show %{model}'
+    short_show: 'Show'
     back: 'Back to %{page}'
+    add: 'Add'
     edit: 'Edit %{model}'
+    short_edit: 'Edit'
     delete: 'Delete %{model}'
+    short_delete: 'Delete'
     change_visibility: 'Change Visibility'
+    game_rules: 'Game Rules'
+    confirm_destroy_message: 'Are you sure?'
 
   legend:
+    my_information: 'My Information'
+    register: 'Register'
+    login: 'Login'
+    social_login: 'Social Login'
+    welcome: 'Welcome to'
+    join: 'Join %{model}'
     new: 'New %{model}'
     editing: 'Editing %{model}'
+    mastered: 'Matered %{model}'
+    played: 'Played %{model}'
 
   view_text:
     visibility_all: 'Visible to All'
@@ -67,6 +102,13 @@ en:
     created: 'Created'
     last_updated: 'Last updated'
     attached: 'Attached'
+
+  table:
+    options: 'Options'
+    show: 'Show'
+    edit: 'Edit'
+    destroy: 'Destroy'
+    none_available: 'No %{model} available'
 
   model:
     achievement: 'Achievement'
@@ -97,6 +139,16 @@ en:
       trait: 'Trait'
       user: 'User'
     attributes:
+      game:
+        secret_key: 'Secret Key'
+        dungeon_master: 'Dungeon Master'
       campaign_note:
         dm_annotation: 'DM Annotation'
         document: 'Document'
+      character:
+        name: 'Name'
+        race: 'Race'
+      user:
+        name: 'Name'
+        email: 'Email'
+        created_at: 'Registration Date'

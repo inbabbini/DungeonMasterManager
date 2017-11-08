@@ -1,7 +1,7 @@
 <div class="row justify-content-center">
   <div class="col-sm-2 col-xs-12">
-    <%= link_to 'Game Rules', game_rules_path(@game), class: 'btn btn-block btn-dark text-light' %>
-    <%= link_to 'Back to Games', games_path, class: 'btn btn-block btn-dark text-light' %>
+    <%= link_to t('button.game_rules'), game_rules_path(@game), class: 'btn btn-block btn-dark text-light' %>
+    <%= link_to t('button.back', page: Game.model_name.human.pluralize), games_path, class: 'btn btn-block btn-dark text-light' %>
 
   </div>
   <div class="col-sm-6 col-xs-12">
@@ -9,21 +9,21 @@
           <%= @game.name %>
           <small class="pull-right">
             <% if user_is_dm? %>
-              Secret key: <%= @game.secret_key %>
+              <%= Game.human_attribute_name('secret_key') %>: <%= @game.secret_key %>
             <% else %>
-               Dungeon Master: <%= @game.dungeon_master.name %>
+               <%= Game.human_attribute_name('dungeon_master') %>: <%= @game.dungeon_master.name %>
             <% end %>
           </small>
         </legend>
         <div class="row">
           <div class="col-12">
-            <legend> Characters </legend>
+            <legend> <%= Character.model_name.human.pluralize %> </legend>
             <table class="table table-striped table-hover">
               <thead class="thead-dark">
                 <tr>
-                  <th> Name </th>
-                  <th> Race </th>
-                  <th colspan="3">Options</th>
+                  <th> <%= Character.human_attribute_name('name') %> </th>
+                  <th> <%= Character.human_attribute_name('race') %> </th>
+                  <th colspan="3"><%= t('table.options') %></th>
                 </tr>
               </thead>
               <tbody>
@@ -32,17 +32,17 @@
                   <tr>
                     <td><%= c.name %></td>
                     <td><%= c.race %></td>
-                    <td><%= link_to 'Show', game_character_path(@game, c) %></td>
-                    <td><%= link_to 'Edit', edit_game_character_path(@game, c) %></td>
-                    <td><%= link_to 'Delete', game_character_path(@game, c), method: :delete, data: { confirm: 'Are you sure?' }%></td>
+                    <td><%= link_to t('table.show'), game_character_path(@game, c) %></td>
+                    <td><%= link_to t('table.edit'), edit_game_character_path(@game, c) %></td>
+                    <td><%= link_to t('table.delete'), game_character_path(@game, c), method: :delete, data: { confirm: 'Are you sure?' }%></td>
                   </tr>
                   <% end %>
                 <% else %>
-                  No characters available
+                  <%= t('table.none_available', model: Character.model_name.human) %>
                 <% end %>
               </tbody>
             </table>
-            <%= link_to 'New Character', new_game_character_path(@game), class: 'btn btn-success text-light' %>
+            <%= link_to t('button.new', model: Character.model_name.human), new_game_character_path(@game), class: 'btn btn-success text-light' %>
           </div>
         </div>
   </div>
@@ -50,7 +50,7 @@
   <div class="col-sm-4 col-xs-12">
         <legend> Campaign Notes</legend>
         <div>
-          <%= link_to 'All Notes', game_campaign_notes_path(@game), class: 'btn btn-sm btn-dark text-light' %>
+          <%= link_to t('button.show', model: CampaignNote.model_name.human.pluralize), game_campaign_notes_path(@game), class: 'btn btn-sm btn-dark text-light' %>
           <% if user_is_dm? %>
             <%= link_to 'New Note', new_game_campaign_note_path(@game), class: 'btn btn-sm btn-success text-light' %>
           <% end %>
@@ -76,7 +76,7 @@
                           <%= link_to cnote.title, game_campaign_note_path(@game, cnote), class: 'list-group-item' %>
                         <% end %>
                       <% else %>
-                        No notes available
+                        <%= t('table.none_available', model: CampaignNote.model_name.human.pluralize) %>
                       <% end %>
                     </div>
                   </div>
@@ -85,7 +85,7 @@
             </div>
           <% end %>
         <% else %>
-          No categories avalible
+          <%= t('table.none_available', model: Character.model_name.human.pluralize) %>
         <% end %>
     </div>
   </div>

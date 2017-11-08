@@ -2,10 +2,10 @@
 <div class="row">
   <div class="col-2">
     <% if user_is_dm? %>
-      <%= link_to 'New Category', new_game_category_path(@game), class: 'btn btn-success text-light btn-block' %>
-      <%= link_to 'New Note', new_game_campaign_note_path(@game), class: "btn btn-success text-light btn-block" %>
+      <%= link_to t('button.new', page: Category.model_name.human), new_game_category_path(@game), class: 'btn btn-success text-light btn-block' %>
+      <%= link_to t('button.new', page: CampaignNote.model_name.human), new_game_campaign_note_path(@game), class: "btn btn-success text-light btn-block" %>
     <% end %>
-    <%= link_to 'Back to game', @game, class: "btn btn-dark text-light btn-block" %>
+    <%= link_to t('button.back', page: Game.model_name.human), @game, class: "btn btn-dark text-light btn-block" %>
   </div>
   <div class="col-8">
 
@@ -15,7 +15,7 @@
         <%= c.name %>
         <%if user_is_dm? %>
           <div class="pull-right">
-            <%= link_to 'Edit', edit_game_category_path(@game, c) %> | <%= link_to 'Destroy', game_category_path(@game, c), method: :delete, data: { confirm: 'Are you sure?' } %>
+            <%= link_to t('button.short_edit'), edit_game_category_path(@game, c) %> | <%= link_to t('button.short_delete'), game_category_path(@game, c), method: :delete, data: { confirm: 'Are you sure?' } %>
           </div>
         <% end %>
       </div>
@@ -24,9 +24,9 @@
       <div class="card-body">
         <h4 class="card-title"><%= campaign_note.title %> </h4>
         <p class="card-text">
-          <%= campaign_note.content.first(30) %>... <%= link_to 'Show', game_campaign_note_path(@game, campaign_note) %>
+          <%= campaign_note.content.first(30) %>... <b><%= link_to t('button.short_show'), game_campaign_note_path(@game, campaign_note) %></b>
         </p>
-        <small class="text-muted">Last updated <%= distance_of_time_in_words_to_now(campaign_note.updated_at) %></small>
+        <small class="text-muted"><%= t('view_text.last_update') %> <%= distance_of_time_in_words_to_now(campaign_note.updated_at) %></small>
       </div>
       <% end %>
     </div>

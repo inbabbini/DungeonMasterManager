@@ -1,10 +1,10 @@
 <div class="row">
   <div class="col-sm-2">
-    <%= link_to 'Back to Game', game_path(@game), class: 'btn btn-block btn-dark text-light' %>
+    <%= link_to t('button.back', page: Game.model_name.human), game_path(@game), class: 'btn btn-block btn-dark text-light' %>
   </div>
 
   <div class="col-sm-8">
-    <legend>Editing Rule</legend>
+    <legend><%= t('legend.editing', model: Rule.model_name.human) %></legend>
 
     <%= form_with(model: @rule, url: game_rule_path(@game, @rule), local: true) do |form| %>
       <%= render 'form_errors', rule: @rule %>

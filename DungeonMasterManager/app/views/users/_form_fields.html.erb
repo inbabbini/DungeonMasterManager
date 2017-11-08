@@ -1,5 +1,5 @@
 <fieldset>
-  <legend><%= @user.new_record? ? 'Register' : 'Editing User' %></legend>
+  <legend><%= @user.new_record? ? t('button.register') : t('legend.editing', model: User.model_name.human) %></legend>
   <% if @user.new_record? %>
   <div class="form-group row">
     <%= form.label :email, class: 'col-sm-2 control-label' %>
@@ -32,5 +32,5 @@
       <%= form.password_field :password_confirmation, id: :user_password_confirmation, class:'form-control' %>
     </div>
   </div>
-  <%= form.submit @user.new_record? ? 'Register' : 'Save', class: 'btn btn-dark pull-right' %>
+  <%= form.submit @user.new_record? ? t('button.register') : t('button.save'), class: 'btn btn-dark pull-right' %>
 </fieldset>

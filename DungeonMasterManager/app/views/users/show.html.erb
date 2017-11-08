@@ -1,21 +1,21 @@
 <div class="row justify-content-center">
 	<div class="col-6">
-		<legend> My Information </legend>
+		<legend> <%= t('legend.my_information') %> </legend>
 		<div>
 				<%= image_tag @user.picture.url(:normal), class: "img-thumbnail rounded mx-auto d-block" %>
 		</div>
 		<ul class="list-group">
 			<li class="list-group-item">
-				<b>Name:</b> <%= @user.name %>
+				<b><%= User.human_attribute_name('name') %>:</b> <%= @user.name %>
 			</li>
 			<li class="list-group-item">
-				<b>Mail:</b> <%= @user.email %>
+				<b><%= User.human_attribute_name('email') %>:</b> <%= @user.email %>
 			</li>
 			<li class="list-group-item">
-				<b>Registration Date: </b> <%= time_tag(@user.created_at) %>
+				<b><%= User.human_attribute_name('created_at') %>: </b> <%= time_tag(@user.created_at) %>
 			</li>
 		</ul>
-		<%= link_to 'Edit Account', edit_user_path(@user), class: "btn btn-sm btn-primary text-light" %>
-		<%= link_to 'Delete Account', user_path(@user), class: "btn btn-sm btn-danger text-light", method: :delete, data: { confirm: 'Are you sure?' } %>
+		<%= link_to t('button.edit', model: User.model_name.human), edit_user_path(@user), class: "btn btn-sm btn-primary text-light" %>
+		<%= link_to t('button.destroy', model: User.model_name.human), user_path(@user), class: "btn btn-sm btn-danger text-light", method: :delete, data: { confirm: 'Are you sure?' } %>
 	</div>
 </div>
