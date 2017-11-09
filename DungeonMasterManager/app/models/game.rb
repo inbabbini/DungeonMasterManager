@@ -20,12 +20,12 @@ class Game < ApplicationRecord
   #Instance Methods
   def add_player(user)
     if self.is_related_to? user
-      return false, I18n.t 'flash_messages.error.join_game'
+      return false, I18n.t('flash_messages.error.join_game')
     end
 
     self.players << user
     self.save
-    return true, I18n.t 'flash_messages.success.join_game', game: self.name
+    return true, I18n.t('flash_messages.success.join_game', game: self.name)
   end
 
   def is_related_to?(user)

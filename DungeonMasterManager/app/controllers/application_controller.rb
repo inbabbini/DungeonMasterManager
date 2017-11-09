@@ -14,7 +14,7 @@ class ApplicationController < ActionController::Base
 
   def check_already_logged
     if user_signed_in?
-      flash[:warning] = I18n.t 'flash_messages.warning.already_signed'
+      flash[:warning] = I18n.t('flash_messages.warning.already_signed')
       redirect_to root_path
     end
   end
@@ -38,15 +38,15 @@ class ApplicationController < ActionController::Base
   #Custom validation callbacks
 
   def user_owns_character_or_game?
-    redirect_back fallback_location: games_url, flash: { warning: I18n.t 'flash_messages.warning.not_allowed' } unless current_user.owns?(@character) || current_user.owns?(@game)
+    redirect_back fallback_location: games_url, flash: { warning: I18n.t('flash_messages.warning.not_allowed')  } unless current_user.owns?(@character) || current_user.owns?(@game)
   end
 
   def user_owns_game?
-    redirect_back fallback_location: games_url, flash: { warning: I18n.t 'flash_messages.warning.not_allowed' } unless current_user.owns?(@game)
+    redirect_back fallback_location: games_url, flash: { warning: I18n.t('flash_messages.warning.not_allowed') } unless current_user.owns?(@game)
   end
 
   def user_belongs_to_game?
-    redirect_back fallback_location: games_url, flash: { warning: I18n.t 'flash_messages.warning.not_allowed' } unless current_user.is_dm_or_player?(@game)
+    redirect_back fallback_location: games_url, flash: { warning: I18n.t('flash_messages.warning.not_allowed') } unless current_user.is_dm_or_player?(@game)
   end
 
   #Shared initializers

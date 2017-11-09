@@ -3,8 +3,8 @@
   <div class="col-2">
     <% if user_is_dm? %>
       <%= link_to t('button.change_visibility'), change_game_campaign_note_visibility_path(@game, @campaign_note), class: "btn btn-primary text-light btn-block" %>
-      <%= link_to t('button.edit', page: CampaignNote.model_name.human), edit_game_campaign_note_path(@game, @campaign_note), class: "btn btn-primary text-light btn-block" %>
-      <%= link_to t('button.delete', page: CampaignNote.model_name.human), game_campaign_note_path(@game, @campaign_note), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger text-light btn-block" %>
+      <%= link_to t('button.edit', model: CampaignNote.model_name.human), edit_game_campaign_note_path(@game, @campaign_note), class: "btn btn-primary text-light btn-block" %>
+      <%= link_to t('button.delete', model: CampaignNote.model_name.human), game_campaign_note_path(@game, @campaign_note), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger text-light btn-block" %>
     <% end %>
     <%= link_to t('button.back', page: CampaignNote.model_name.human.pluralize), game_campaign_notes_path, class: "btn btn-dark text-light btn-block" %>
     <%= link_to t('button.back', page: Game.model_name.human), @game, class: "btn btn-dark text-light btn-block" %>

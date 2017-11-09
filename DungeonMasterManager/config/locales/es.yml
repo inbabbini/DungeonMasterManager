@@ -1,0 +1,115 @@
+es:
+  activerecord:
+    attributes:
+      campaign_note:
+        dm_annotation: "DM Annotation"
+        document: Document
+      character:
+        name: Name
+        race: Race
+      game:
+        dungeon_master: "Dungeon Master"
+        secret_key: "Secret Key"
+      user:
+        created_at: "Registration Date"
+        email: Email
+        name: Name
+    models:
+      achievement: Achievement
+      campaign_note: "Campaign Note"
+      category: Category
+      character: Character
+      game: Game
+      item: Item
+      note: Note
+      rule: Rule
+      skill: Skill
+      status: Status
+      trait: Trait
+      user: User
+  button:
+    add: Add
+    back: "Back to %{page}"
+    change_visibility: "Change Visibility"
+    confirm_destroy_message: "Are you sure?"
+    delete: "Delete %{model}"
+    edit: "Edit %{model}"
+    game_rules: "Game Rules"
+    home: Home
+    join: "Join %{model}"
+    login: Login
+    login_with: "Login with %{provider}"
+    logout: Logout
+    my_games: "My Games"
+    my_profile: "My Profile"
+    new: "New %{model}"
+    register: Register
+    save: Save
+    short_delete: Delete
+    short_edit: Edit
+    short_show: Show
+    show: "Show %{model}"
+  flash_messages:
+    error:
+      authentication: "Incorrect user/password combination provided"
+      form: "Hmm, there seems to be some errors with your information..."
+      invalid_game_key: "The key provided does not belong to any game"
+      join_game: "You already belong to this game."
+    success:
+      authentication: "Greetings, %{name}!"
+      created: "%{model} successfully created!"
+      destroyed: "%{model} successfully destroyed!"
+      join_game: "You just joined %{game}. Welcome aboard!"
+      logout: "Greetings, %{name}!"
+      updated: "%{model} successfully updated!"
+      user:
+        deleted: "You successfully deleted your user. Farewell!"
+        registered: "Wellcome, %{name} You have successfully registered."
+      visibility_inverted: "%{model} visibility successfully inverted!"
+    warning:
+      already_signed: "You are already signed in"
+      not_allowed: "You are not allowed to do that!"
+  legend:
+    editing: "Editing %{model}"
+    join: "Join %{model}"
+    login: Login
+    mastered: "Matered %{model}"
+    my_information: "My Information"
+    new: "New %{model}"
+    played: "Played %{model}"
+    register: Register
+    social_login: "Social Login"
+    welcome: "Welcome to"
+  model:
+    achievement: Achievement
+    campaign_note: "Campaign Note"
+    category: Category
+    character: Character
+    game: Game
+    item: Item
+    note: Note
+    rule: Rule
+    skill: Skill
+    status: Status
+    trait: Trait
+    user: User
+  navbar:
+    hello: "Hello, %{username}"
+  notification:
+    header:
+      error: "Critical <b>Failure</b>!"
+      notice: "You <b>notice</b> something"
+      success: "Critical <b>success</b>!"
+      warning: "Oh no, you <b>wont!</b>"
+  table:
+    destroy: Destroy
+    edit: Edit
+    none_available: "No %{model} available"
+    options: Options
+    show: Show
+  view_text:
+    attached: Attached
+    created: Created
+    last_updated: "Last updated"
+    visibility_all: "Visible to All"
+    visibility_dm: "Visible to DM"

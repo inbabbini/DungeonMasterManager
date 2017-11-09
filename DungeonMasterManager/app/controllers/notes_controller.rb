@@ -33,10 +33,10 @@ class NotesController < ApplicationController
 
     respond_to do |format|
       if @note.save
-        format.html { redirect_to game_character_note_path(@game, @character, @note), flash: { success: I18n.t 'flash_messages.success.created', model: I18n.t 'model.note' } }
+        format.html { redirect_to game_character_note_path(@game, @character, @note), flash: { success: I18n.t('flash_messages.success.created', model: I18n.t('model.note')) } }
         format.json { render :show, status: :created, location: @note }
       else
-        flash.now[:error] = I18n.t 'flash_messages.error.form'
+        flash.now[:error] = I18n.t('flash_messages.error.form')
         format.html { render :new }
         format.json { render json: @note.errors, status: :unprocessable_entity }
       end
@@ -48,10 +48,10 @@ class NotesController < ApplicationController
   def update
     respond_to do |format|
       if @note.update(note_params)
-        format.html { redirect_to game_character_note_path(@game, @character, @note), flash: { success: I18n.t 'flash_messages.success.updated', model: I18n.t 'model.note' } }
+        format.html { redirect_to game_character_note_path(@game, @character, @note), flash: { success: I18n.t('flash_messages.success.updated', model: I18n.t('model.note')) } }
         format.json { render :show, status: :ok, location: @note }
       else
-        flash.now[:error] = I18n.t 'flash_messages.error.form'
+        flash.now[:error] = I18n.t('flash_messages.error.form')
         format.html { render :edit }
         format.json { render json: @note.errors, status: :unprocessable_entity }
       end
@@ -63,7 +63,7 @@ class NotesController < ApplicationController
   def destroy
     @note.destroy
     respond_to do |format|
-      format.html { redirect_to game_character_path(@game, @character), flash: { success: I18n.t 'flash_messages.success.destroyed', model: I18n.t 'model.note' } }
+      format.html { redirect_to game_character_path(@game, @character), flash: { success: I18n.t('flash_messages.success.destroyed', model: I18n.t('model.note')) } }
       format.json { head :no_content }
     end
   end

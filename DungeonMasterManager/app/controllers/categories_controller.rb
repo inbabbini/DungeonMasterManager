@@ -35,10 +35,10 @@ class CategoriesController < ApplicationController
 
     respond_to do |format|
       if @category.save
-        format.html { redirect_to game_campaign_notes_path(@game), flash: { success: I18n.t 'flash_messages.success.created', model: I18n.t 'model.category' } }
+        format.html { redirect_to game_campaign_notes_path(@game), flash: { success: I18n.t('flash_messages.success.created', model: I18n.t('model.category')) } }
         format.json { render :show, status: :created, location: @category}
       else
-        flash.now[:error] = I18n.t 'flash_messages.error.form'
+        flash.now[:error] = I18n.t('flash_messages.error.form')
         format.html { render :new }
         format.json { render json: @category.errors, status: :unprocessable_entity }
       end
@@ -50,10 +50,10 @@ class CategoriesController < ApplicationController
   def update
     respond_to do |format|
       if @category.update(category_params)
-        format.html { redirect_to game_campaign_notes_path(@game), flash: { success: I18n.t 'flash_messages.success.updated', model: I18n.t 'model.category' } }
+        format.html { redirect_to game_campaign_notes_path(@game), flash: { success: I18n.t('flash_messages.success.updated', model: I18n.t('model.category')) } }
         format.json { render :show, status: :ok, location: @category}
       else
-        flash.now[:error] = I18n.t 'flash_messages.error.form'
+        flash.now[:error] = I18n.t('flash_messages.error.form')
         format.html { render :edit }
         format.json { render json: @category.errors, status: :unprocessable_entity }
       end
@@ -65,7 +65,7 @@ class CategoriesController < ApplicationController
   def destroy
     @category.destroy
     respond_to do |format|
-      format.html { redirect_to game_campaign_notes_path(@game), flash: { success: I18n.t 'flash_messages.success.destroyed', model: I18n.t 'model.category' } }
+      format.html { redirect_to game_campaign_notes_path(@game), flash: { success: I18n.t('flash_messages.success.destroyed', model: I18n.t('model.category')) } }
       format.json { head :no_content }
     end
   end

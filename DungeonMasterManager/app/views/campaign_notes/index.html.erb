@@ -2,8 +2,8 @@
 <div class="row">
   <div class="col-2">
     <% if user_is_dm? %>
-      <%= link_to t('button.new', page: Category.model_name.human), new_game_category_path(@game), class: 'btn btn-success text-light btn-block' %>
-      <%= link_to t('button.new', page: CampaignNote.model_name.human), new_game_campaign_note_path(@game), class: "btn btn-success text-light btn-block" %>
+      <%= link_to t('button.new', model: Category.model_name.human), new_game_category_path(@game), class: 'btn btn-success text-light btn-block' %>
+      <%= link_to t('button.new', model: CampaignNote.model_name.human), new_game_campaign_note_path(@game), class: "btn btn-success text-light btn-block" %>
     <% end %>
     <%= link_to t('button.back', page: Game.model_name.human), @game, class: "btn btn-dark text-light btn-block" %>
   </div>

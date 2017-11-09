@@ -15,10 +15,10 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
-        format.html { redirect_to login_path, flash: { success: I18n.t 'flash_messages.success.user.registered', name: @user.name } }
+        format.html { redirect_to login_path, flash: { success: I18n.t('flash_messages.success.user.registered', name: @user.name )} }
         format.json { render :show, status: :created, location: @user }
       else
-        flash.now[:error] = I18n.t 'flash_messages.error.form'
+        flash.now[:error] = I18n.t('flash_messages.error.form')
         format.html { render :new }
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end
@@ -32,10 +32,10 @@ class UsersController < ApplicationController
     respond_to do |format|
       if @user.update(user_params)
         flash[:success] =
-        format.html { redirect_to user_path(@user), flash: { success: I18n.t 'flash_messages.success.updated', model: I18n.t 'model.user' } }
+        format.html { redirect_to user_path(@user), flash: { success: I18n.t('flash_messages.success.updated'), model: I18n.t('model.user') } }
         format.json { render :show, status: :ok, location: @user }
       else
-        flash.now[:error] = I18n.t 'flash_messages.error.form'
+        flash.now[:error] = I18n.t('flash_messages.error.form')
         format.html { render :edit }
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end
@@ -46,7 +46,7 @@ class UsersController < ApplicationController
     @user.destroy
     respond_to do |format|
       logout
-      format.html { redirect_to root_path, flash: { success: I18n.t 'flash_messages.success.user.deleted' } }
+      format.html { redirect_to root_path, flash: { success: I18n.t('flash_messages.success.user.deleted') } }
       format.json { head :no_content }
     end
   end

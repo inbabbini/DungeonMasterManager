@@ -1,7 +1,7 @@
 <div class="row">
   <div class="col-md-2 col-xs-12">
-    <%= link_to t('button.new', page: Game.model_name.human), new_game_path, class: 'btn btn-success text-light btn-block' %>
-    <%= link_to t('button.join', page: Game.model_name.human), games_join_path, class: 'btn btn-primary text-light btn-block' %>
+    <%= link_to t('button.new', model: Game.model_name.human), new_game_path, class: 'btn btn-success text-light btn-block' %>
+    <%= link_to t('button.join', model: Game.model_name.human), games_join_path, class: 'btn btn-primary text-light btn-block' %>
   </div>
   <div class="col-md-4 col-xs-12">
     <legend><%= t('legend.mastered', model: Game.model_name.human.pluralize) %></legend>

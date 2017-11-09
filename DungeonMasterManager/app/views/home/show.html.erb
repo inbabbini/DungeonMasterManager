@@ -3,8 +3,8 @@
     <h1> <%= t('legend.welcome') %> </h1>
     <h1 class="display-3 font-weight-bold">Dungeon Master Manager</h1>
     <% if user_signed_in? %>
-      <%= link_to t('button.my_games'), user_path(current_user), class:'btn btn-primary btn-block text-light' %>
-      <%= link_to t('button.my_profile'), games_path, class:'btn btn-dark btn-block text-light' %>
+      <%= link_to t('button.my_profile'), user_path(current_user), class:'btn btn-primary btn-block text-light' %>
+      <%= link_to t('button.my_games'), games_path, class:'btn btn-dark btn-block text-light' %>
 
     <% else %>
       <%= link_to t('button.login'), login_path, class:'btn btn-danger btn-block text-light' %>
