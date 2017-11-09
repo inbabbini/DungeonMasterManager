@@ -59,4 +59,10 @@ class ApplicationController < ActionController::Base
     @character = Character.find(params[:character_id])
   end
 
+  #Locale initializer
+  def set_locale
+      I18n.locale = session[:locale] || I18n.default_locale      
+    end
+  end
+
 end

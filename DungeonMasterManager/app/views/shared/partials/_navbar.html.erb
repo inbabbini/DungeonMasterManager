@@ -8,11 +8,20 @@
       <li class="nav-item">
         <%= link_to t('button.home'), root_path, class: 'nav-link' %>
       </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <%= t('navbar.change_language') %>
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          <%= link_to t('navbar.language.en'), change_locale_path('en'), class:'dropdown-item' %>
+          <%= link_to t('button.language.es'), change_locale_path('es'), class:'dropdown-item' %>
+        </div>
+      </li>
       <% if user_signed_in? %>
         <li class="nav-item">
           <%= link_to t('button.my_games'), games_path, class:'nav-link' %>
         </li>
-        <li>
+        <li class="nav-item">
           <%= link_to t('button.join', model: Game.model_name.human), games_join_path, class:'nav-link' %>
         </li>
       <% end %>

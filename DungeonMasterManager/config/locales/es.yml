@@ -55,6 +55,8 @@ es:
       form: "Hmm, parece que hay errores con su información..."
       invalid_game_key: "La clave prosita no pertenece a ningún juego"
       join_game: "Ya estás participando de este juego."
+    notice:
+      locale_set_to: "Se cambió el idioma a %{locale}"
     success:
       authentication: "Bienvenido, %{name}!"
       created: "%{model} correctamente creado!"

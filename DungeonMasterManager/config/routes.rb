@@ -21,6 +21,9 @@ Rails.application.routes.draw do
   get 'games/join', to: 'games#join', as: 'games_join'
   post 'games/register', to: 'games#register', as: 'games_register'
 
+  #Locale routes
+  get 'locale/:locale_abbr', to 'locales#change_locale', as: 'change_locale'
+
   resources :users, except: :index
   resources :games do
     resources :characters do

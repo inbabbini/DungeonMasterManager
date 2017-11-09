@@ -87,6 +87,8 @@ en:
       form: "Hmm, there seems to be some errors with your information..."
       invalid_game_key: "The key provided does not belong to any game"
       join_game: "You already belong to this game."
+    notice:
+      locale_set_to: "Locale set to %{locale}"
     success:
       authentication: "Greetings, %{name}!"
       created: "%{model} successfully created!"
@@ -127,6 +129,10 @@ en:
     user: User
   navbar:
     hello: "Hello, %{username}"
+    change_language: "Change Language"
+    language:
+      en: English
+      es: Spanish
   notification:
     header:
       error: "Critical <b>Failure</b>!"
