@@ -2,114 +2,114 @@ es:
   activerecord:
     attributes:
       campaign_note:
-        dm_annotation: "DM Annotation"
-        document: Document
+        dm_annotation: "Nota del DM"
+        document: Documento
       character:
-        name: Name
-        race: Race
+        name: Nombre
+        race: Raza
       game:
         dungeon_master: "Dungeon Master"
-        secret_key: "Secret Key"
+        secret_key: "Clave Secreta"
       user:
-        created_at: "Registration Date"
+        created_at: "Fecha de Registración"
         email: Email
-        name: Name
+        name: Nombre
     models:
-      achievement: Achievement
-      campaign_note: "Campaign Note"
-      category: Category
-      character: Character
-      game: Game
+      achievement: Logro
+      campaign_note: "Nota de Campaña"
+      category: Categoria
+      character: Personaje
+      game: Juego
       item: Item
-      note: Note
-      rule: Rule
-      skill: Skill
-      status: Status
-      trait: Trait
-      user: User
+      note: Nota
+      rule: Regla
+      skill: Habilidad
+      status: Estado
+      trait: Rasgo
+      user: Usuario
   button:
-    add: Add
-    back: "Back to %{page}"
-    change_visibility: "Change Visibility"
-    confirm_destroy_message: "Are you sure?"
-    delete: "Delete %{model}"
-    edit: "Edit %{model}"
-    game_rules: "Game Rules"
+    add: Agregar
+    back: "Volver a %{page}"
+    change_visibility: "Cambiar Visibilidad"
+    confirm_destroy_message: "Estas seguro?"
+    delete: "Eliminar %{model}"
+    edit: "Editar %{model}"
+    game_rules: "Reglas del Juego"
     home: Home
-    join: "Join %{model}"
-    login: Login
-    login_with: "Login with %{provider}"
-    logout: Logout
-    my_games: "My Games"
-    my_profile: "My Profile"
-    new: "New %{model}"
-    register: Register
-    save: Save
-    short_delete: Delete
-    short_edit: Edit
-    short_show: Show
-    show: "Show %{model}"
+    join: "Unirse a %{model}"
+    login: "Iniciar Sesión"
+    login_with: "Iniciar Sesión con %{provider}"
+    logout: "Cerrar Sesión"
+    my_games: "Mis Juegos"
+    my_profile: "Mi Perfil"
+    new: "Nuevo %{model}"
+    register: Registrarse
+    save: Guardar
+    short_delete: Eliminar
+    short_edit: Editar
+    short_show: Mostrar
+    show: "Mostrar %{model}"
   flash_messages:
     error:
-      authentication: "Incorrect user/password combination provided"
-      form: "Hmm, there seems to be some errors with your information..."
-      invalid_game_key: "The key provided does not belong to any game"
-      join_game: "You already belong to this game."
+      authentication: "La combinación provista de usuario/contraseña es incorrecta"
+      form: "Hmm, parece que hay errores con su información..."
+      invalid_game_key: "La clave prosita no pertenece a ningún juego"
+      join_game: "Ya estás participando de este juego."
     success:
-      authentication: "Greetings, %{name}!"
-      created: "%{model} successfully created!"
-      destroyed: "%{model} successfully destroyed!"
-      join_game: "You just joined %{game}. Welcome aboard!"
-      logout: "Greetings, %{name}!"
-      updated: "%{model} successfully updated!"
+      authentication: "Bienvenido, %{name}!"
+      created: "%{model} correctamente creado!"
+      destroyed: "%{model} correctamente destruido!"
+      join_game: "Te acabás de unir a %{game}. Bienvenido a bordo!"
+      logout: "Hasta luego, %{name}!"
+      updated: "%{model} correctamente actualizado!"
       user:
-        deleted: "You successfully deleted your user. Farewell!"
-        registered: "Wellcome, %{name} You have successfully registered."
-      visibility_inverted: "%{model} visibility successfully inverted!"
+        deleted: "Eliminaste correctamente tu usuario. Adiós!"
+        registered: "Bienvenido, %{name}. Te registraste correctamente."
+      visibility_inverted: "Visibilidad de %{model} coorectamente invertida!"
     warning:
-      already_signed: "You are already signed in"
-      not_allowed: "You are not allowed to do that!"
+      already_signed: "Ya iniciaste sesión."
+      not_allowed: "No tenés permisos para hacer eso!"
   legend:
-    editing: "Editing %{model}"
-    join: "Join %{model}"
-    login: Login
-    mastered: "Matered %{model}"
-    my_information: "My Information"
-    new: "New %{model}"
-    played: "Played %{model}"
-    register: Register
-    social_login: "Social Login"
-    welcome: "Welcome to"
+    editing: "Editando %{model}"
+    join: "Unirse a %{model}"
+    login: "Iniciar Sesión"
+    mastered: "%{model} Mastereados"
+    my_information: "Mi Información"
+    new: "Nuevo %{model}"
+    played: "%{model} Jugados"
+    register: "Cerrar Sesión"
+    social_login: "Login Social"
+    welcome: "Bienvenido a"
   model:
-    achievement: Achievement
-    campaign_note: "Campaign Note"
-    category: Category
-    character: Character
-    game: Game
+    achievement: Logro
+    campaign_note: "Nota de Campaña"
+    category: Categoria
+    character: Personaje
+    game: Juego
     item: Item
-    note: Note
-    rule: Rule
-    skill: Skill
-    status: Status
-    trait: Trait
-    user: User
+    note: Nota
+    rule: Regla
+    skill: Habilidad
+    status: Estado
+    trait: Rasgo
+    user: Usuario
   navbar:
-    hello: "Hello, %{username}"
+    hello: "Hola, %{username}"
   notification:
     header:
-      error: "Critical <b>Failure</b>!"
-      notice: "You <b>notice</b> something"
-      success: "Critical <b>success</b>!"
-      warning: "Oh no, you <b>wont!</b>"
+      error: "<b>Falla</b> crítica!"
+      notice: "<b>Notás</b> algo..."
+      success: "<b>Éxito</b> crítico!"
+      warning: "Ah no, así <b>no</b>!"
   table:
-    destroy: Destroy
-    edit: Edit
-    none_available: "No %{model} available"
-    options: Options
-    show: Show
+    destroy: Eliminar
+    edit: Editar
+    none_available: "No hay %{model} disponible"
+    options: Opciones
+    show: Ver
   view_text:
-    attached: Attached
-    created: Created
-    last_updated: "Last updated"
-    visibility_all: "Visible to All"
-    visibility_dm: "Visible to DM"
+    attached: Adjunto
+    created: Creado
+    last_updated: "Última actualización"
+    visibility_all: "Visible para todos"
+    visibility_dm: "Visible para el DM"
