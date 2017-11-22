@@ -22,7 +22,7 @@ Rails.application.routes.draw do
   post 'games/register', to: 'games#register', as: 'games_register'
 
   #Locale routes
-  get 'locale/:locale_abbr', to 'locales#change_locale', as: 'change_locale'
+  get 'locale/:locale_abbr', to: 'locales#change_locale', as: 'change_locale'
 
   resources :users, except: :index
   resources :games do
