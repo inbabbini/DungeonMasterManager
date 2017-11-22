@@ -3,6 +3,7 @@ class ApplicationController < ActionController::Base
   helper_method :current_user
   helper_method :user_is_dm?
   helper_method :user_signed_in?
+  before_action :set_locale
 
   def logout
     session[:user_id] = nil
@@ -61,7 +62,7 @@ class ApplicationController < ActionController::Base
 
   #Locale initializer
   def set_locale
-    I18n.locale = session[:locale] || I18n.default_locale
+      I18n.locale = session[:locale] || I18n.default_locale
   end
 
 end
