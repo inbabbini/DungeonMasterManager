@@ -29,7 +29,7 @@ Rails.application.routes.draw do
     resources :characters do
       resources :skills, except: [:index, :show]
       resources :items, except: [:index, :show]
-      resources :notes, except: [:index, :show]
+      resources :notes, except: :index
       resources :achievements, except: [:index, :show]
       resources :statuses, except: [:index, :show]
       resources :traits, except: [:index, :show]

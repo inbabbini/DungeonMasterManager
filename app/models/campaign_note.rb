@@ -5,6 +5,7 @@ class CampaignNote < ApplicationRecord
   belongs_to :category
 
   #Validations
+  validates :category, presence: true
   validates :title, :content, presence: true
   validates :title, length: { in: 2..255 }
   validates :content, length: { minimum: 1 }

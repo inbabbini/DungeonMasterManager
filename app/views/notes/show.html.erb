@@ -1,8 +1,8 @@
 <legend> <%= @character.name %> Note </legend>
 <div class="row">
   <div class="col-2">
-    <%= link_to t('button.edit', page: Note.model_name.human),  edit_game_character_note_path(@game, @character, @note), class: "btn btn-primary text-light btn-block" %>
-    <%= link_to t('button.delete', page: Note.model_name.human),  game_character_note_path(@game, @character, @note), class: "btn btn-danger text-light btn-block", method: :delete, data: { confirm: 'Are you sure?' } %>
+    <%= link_to t('button.edit', model: Note.model_name.human),  edit_game_character_note_path(@game, @character, @note), class: "btn btn-primary text-light btn-block" %>
+    <%= link_to t('button.delete', model: Note.model_name.human),  game_character_note_path(@game, @character, @note), class: "btn btn-danger text-light btn-block", method: :delete, data: { confirm: 'Are you sure?' } %>
     <%= link_to t('button.back', page: Character.model_name.human), game_character_path(@game, @character), class: "btn btn-dark text-light btn-block" %>
   </div>
   <div class="col-8">

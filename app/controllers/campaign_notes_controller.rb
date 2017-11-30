@@ -24,6 +24,10 @@ class CampaignNotesController < ApplicationController
   def new
     @campaign_note = CampaignNote.new
     @categories = Category.includes(:campaign_notes).for_game(@game).order("name DESC")
+    if @categories.size < 1
+      flash[:error] = "You need to create at least 1 Category first"
+      redirect_back fallback_location: game_campaign_notes_path(@game)
+    end
   end
 
   # GET /campaign_notes/1/edit
