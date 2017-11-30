@@ -24,6 +24,9 @@
                   <th> <%= Character.human_attribute_name('name') %> </th>
                   <th> <%= Character.human_attribute_name('race') %> </th>
                   <th colspan="3"><%= t('table.options') %></th>
+                  <% if user_is_dm? %>
+                  <th> <%= Character.human_attribute_name('user') %> </th>
+                  <% end %>
                 </tr>
               </thead>
               <tbody>
@@ -35,6 +38,9 @@
                     <td><%= link_to t('table.show'), game_character_path(@game, c) %></td>
                     <td><%= link_to t('table.edit'), edit_game_character_path(@game, c) %></td>
                     <td><%= link_to t('table.delete'), game_character_path(@game, c), method: :delete, data: { confirm: 'Are you sure?' }%></td>
+                    <% if user_is_dm? %>
+                    <td><%= c.user.name %></td>
+                    <% end %>
                   </tr>
                   <% end %>
                 <% else %>

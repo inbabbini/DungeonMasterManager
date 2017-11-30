@@ -20,6 +20,7 @@ Rails.application.routes.draw do
   get 'games/:game_id/campaign_notes/:id/change_visibility', to: 'campaign_notes#change_visibility', as: 'change_game_campaign_note_visibility'
   get 'games/join', to: 'games#join', as: 'games_join'
   post 'games/register', to: 'games#register', as: 'games_register'
+  get 'games/:game_id/characters/:id/reassign/:user_id', to: 'characters#reassign', as: 'reassign_games_character'
 
   #Locale routes
   get 'locale/:locale_abbr', to: 'locales#change_locale', as: 'change_locale'

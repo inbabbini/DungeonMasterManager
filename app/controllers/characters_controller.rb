@@ -1,9 +1,10 @@
 class CharactersController < ApplicationController
   before_action :authenticate
   before_action :set_game
-  before_action :set_character, only: [:show, :edit, :update, :destroy]
+  before_action :set_character, only: [:show, :edit, :update, :destroy, :reassign]
   before_action :user_owns_character_or_game?, only: [:show, :edit, :update, :destroy]
   before_action :user_belongs_to_game?, only: [:new, :create]
+  before_action :user_is_dm?, only: :reassign
 
   # GET /characters
   # GET /characters.json
@@ -15,6 +16,9 @@ class CharactersController < ApplicationController
   # GET /characters/1.json
   def show
     @character = Character.includes([:statuses, :skills, :inventory, :items, :traits, :notes, :achievements]).where(game_id: params[:game_id], id: params[:id]).first
+    if user_is_dm?
+      @users = @game.players
+    end
   end
 
   # GET /characters/new
@@ -67,6 +71,19 @@ class CharactersController < ApplicationController
     respond_to do |format|
       format.html { redirect_to game_path(@game), flash: { success: I18n.t('flash_messages.success.destroyed', model: I18n.t('model.character')) } }
       format.json { head :no_content }
+    end
+  end
+
+  def reassign
+    @user = User.find(params[:user_id])
+    if @user.nil?
+      flash[:error] = "Selected user does not exist"
+      redirect_back fallback_location: game_character_path(@game, @character)
+    else
+      @character.user = @user
+      @character.save
+      flash[:success] = "Reassigned character %s to user %s" % [@character.name, @user.name]
+      redirect_back fallback_location: game_character_path(@game, @character)
     end
   end
 

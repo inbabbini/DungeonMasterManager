@@ -14,7 +14,7 @@ class GamesController < ApplicationController
   def show
     if user_is_dm?
       @categories = Category.includes(:campaign_notes).where(game: @game).order("name DESC")
-      @characters = Character.where(game: @game)
+      @characters = Character.where(game: @game).includes(:user)
     else
       @categories = Category.includes(:campaign_notes).where(campaign_notes: {visible_by_players: true}).for_game(@game).order("name DESC")
       @characters = Character.where(game: @game, user: current_user)
